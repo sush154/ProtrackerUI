@@ -1,0 +1,28 @@
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+table tr {
+    cursor: pointer;
+}
+
+.tableHeader {
+    background-color: #006064;
+}
+.tableHeader h5 {
+    color: #fff;
+    float: left;
+    margin-left: 10px;
+}
+
+.tableHeader .fa {
+    float: right;
+    color: #fff;
+    margin-right: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+}

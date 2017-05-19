@@ -1,0 +1,66 @@
+<toaster-container></toaster-container>
+<div class="login-wrap">
+    <div class="login-html">
+
+        <div class="authDiv">
+            <input id="tab-2" type="radio" name="tab" class="sign-up" checked>
+            <label for="tab-2" class="tab">Sign Up</label>
+        </div>
+        <div *ngIf="!registered" class="login-form">
+
+            <div class="sign-up-htm">
+                <form name="registrationForm" #registrationForm="ngForm">
+                    <div class="group col-lg-6 col-md-12 col-sm-6">
+                        <label for="firstName" class="label">First Name</label>
+                        <input id="firstName" name="firstName" type="text" class="input" [(ngModel)]="registration.firstName" required>
+                    </div>
+                    <div class="group col-lg-6 col-md-12 col-sm-6">
+                        <label for="lastName" class="label">Last Name</label>
+                        <input id="lastName" type="text" class="input" name="lastName" [(ngModel)]="registration.lastName" required>
+                    </div>
+                    <div class="group col-lg-12 col-md-12 col-sm-12">
+                        <label for="emailAddress" class="label">Email Address</label>
+                        <input id="emailAddress" name="emailAddress" type="email" class="input" [(ngModel)]="registration.emailAddress" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    </div>
+                    <div class="group col-lg-12 col-md-12 col-sm-12">
+                        <label for="password" class="label">Password</label>
+                        <input id="password" name="password" type="password" class="input" [(ngModel)]="registration.password" required validateEqual="cnfrmPassword" reverse="true">
+                    </div>
+                    <div class="group col-lg-12 col-md-12 col-sm-12">
+                        <label for="cnfrmPassword" class="label">Confirm Password</label>
+                        <input id="cnfrmPassword" name="cnfrmPassword" type="password" class="input" [(ngModel)]="registration.cnfrmPassword" required validateEqual="password">
+                    </div>
+
+                    <div class="group col-lg-12 col-md-12 col-sm-12">
+                        <input type="submit" class="button" value="Sign Up" (click)="register(registration)" [disabled]="!registrationForm.form.valid">
+                    </div>
+                </form>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                    <a [routerLink]="['/login']">Already Member?</a>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="registered">
+            <div class="success">
+                <h2>Registration Successful !</h2>
+            </div>
+            <div class="successMsg">
+                <h4>Your account is successfully registered.</h4>
+            </div>
+            <div class="successMsg">
+                To login into the system ,you will have to authenticate first with One Time Password (OTP). We have sent the OTP to you mail.
+            </div>
+            <div class="successMsg">
+                Please go to your mail box and click on the OTP link shared. The OTP will be valid for 4 hours
+            </div>
+            <div class="otpMsg">
+                If you have not received the OTP, please click below link for new.
+            </div>
+            <div class="otpLink">
+                <a>Click here for new OTP</a>
+            </div>
+        </div>
+    </div>
+</div>

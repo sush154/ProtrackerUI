@@ -1,0 +1,57 @@
+<div>
+    <nav class="navbar navbar-default navbar-custom">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle Navigation</span>Menu
+            </button>
+            <a (click)="navigate('dashboard')" class="navbar-brand">Protracker</a>
+        </div>
+
+        <div class="collapse navbar-collapse" uib-collapse="">
+            <ul class="nav navbar-nav navbar-left">
+                <li (click)="navigate('dashboard')" [class.active]="selectedPage === 'dashboard'">
+                    <a>Dashboard</a>
+                </li>
+                <li (click)="navigate('tasks')" [class.active]="selectedPage === 'tasks'">
+                    <a>Tasks</a>
+                </li>
+                <li (click)="navigate('projects')" [class.active]="selectedPage === 'projects'">
+                    <a>Projects</a>
+                </li>
+                <li (click)="navigate('notes')" [class.active]="selectedPage === 'notes'">
+                    <a>Notes</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="searchIndex">
+                    <div class="searchBox">
+                        <input type="text" class="searchInput">
+
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right ul-padding">
+                <li>
+                    <div>
+                        <div class="dropdown">
+                            <button class="profileBtn" type="button" aria-expanded="true" (click)="toggleMenu()">
+                                Menu
+                            </button>
+                            <ul class="dropdown-menu" *ngIf="menuDisplay">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<div *ngIf="!loggedIn" class="authButtons">
+                        <button type="button" class="btn btn-default signUpBtn" (click)="navigate('register')">Sign Up</button>
+                        <button type="button" class="btn btn-default signInBtn" (click)="navigate('login')">Sign In</button>
+                    </div>-->
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
