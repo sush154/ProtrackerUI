@@ -7,7 +7,6 @@ import {AppHeaderModule} from '../appHeader/header.module';
     imports:        [AppHeaderModule],
     declarations:   [NotesComponent],
     providers:      [],
-    bootstrap:      [NotesComponent],
     exports:        [NotesComponent]
 })
 

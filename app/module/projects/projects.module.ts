@@ -7,7 +7,6 @@ import {ProjectsComponent} from './projects.component';
     imports:        [AppHeaderModule],
     declarations:   [ProjectsComponent],
     providers:      [],
-    bootstrap:      [ProjectsComponent],
     exports:        [ProjectsComponent]
 })
 

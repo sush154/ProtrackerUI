@@ -9,8 +9,7 @@ import {CommonModule} from '@angular/common';
 @NgModule({
     imports: [RouterModule, ToasterModule, FormsModule, CommonModule],
     declarations: [LoginComponent],
-    providers: [LoginProvider],
-    bootstrap: [LoginComponent]
+    providers: [LoginProvider]
 })
 
 export class LoginModule{}

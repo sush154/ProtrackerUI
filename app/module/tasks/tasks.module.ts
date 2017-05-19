@@ -7,7 +7,6 @@ import {AppHeaderModule} from '../appHeader/header.module';
     imports:        [AppHeaderModule],
     declarations:   [TasksComponent],
     providers:      [],
-    bootstrap:      [TasksComponent],
     exports:        [TasksComponent]
 })
 

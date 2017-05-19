@@ -6,7 +6,6 @@ import {ServerErrorComponent} from './server-error.component';
     imports:        [],
     declarations:   [ServerErrorComponent],
     providers:      [],
-    bootstrap:      [ServerErrorComponent]
 })
 
 export class ServerErrorModule{}

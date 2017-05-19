@@ -12,7 +12,6 @@ import {ProjectProvider} from '../../providers/project/project.provider';
     imports:        [AppHeaderModule,CommonModule],
     declarations:   [DashboardComponent,DashboardTasks,DashboardProjects],
     providers:      [ProjectProvider],
-    bootstrap:      [DashboardComponent],
     exports:        [DashboardComponent]
 })
 

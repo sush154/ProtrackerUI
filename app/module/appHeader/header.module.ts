@@ -7,7 +7,6 @@ import {AppHeaderComponent} from './header.component';
     imports:        [CommonModule],
     declarations:   [AppHeaderComponent],
     providers:      [],
-    bootstrap:      [AppHeaderComponent],
     exports:        [AppHeaderComponent]
 })
 

@@ -14,7 +14,6 @@ import {EqualValidator} from '../../common/validation/password.match.directive';
     imports:        [RouterModule, FormsModule, ToasterModule, CommonModule],
     declarations:   [RegistrationComponent, EqualValidator],
     providers:      [RegisterProvider],
-    bootstrap:      [RegistrationComponent],
     exports:        [RegistrationComponent]
 })
 
