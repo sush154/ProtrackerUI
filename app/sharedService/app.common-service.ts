@@ -1,35 +1,31 @@
 import {Injectable} from '@angular/core';
+import {Headers, Http} from '@angular/http';
+import {URL} from './service.url';
+import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
 export class CommonAppService {
 
+    private headers = new Headers({'Content-Type': 'application/json'});
 
-    getCookies(cname : string) : string {
-        var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for(var i = 0; i <ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
+    constructor(private http : Http){}
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 
-    setCookies(cookieName : string, cookieValue : string, expiresDays : number) : void {
-        var d = new Date();
-        d.setTime(d.getTime()+(expiresDays*24*60*60*1000));
-        var exp = "expires="+d.toUTCString();
-        document.cookie = cookieName + "=" + cookieValue + ";" + exp + ";path=/";
+    authenticate() : Promise<any> {
+        let serviceUrl = URL + "/authenticate";
+        return this.http
+            .get(serviceUrl, {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {return res.json();})
+            .catch((err) => {
+                this.handleError(err);
+            });
     }
 
-    deleteCookie(cookieName : string) : void {
-        document.cookie = cookieName + "=;"+"path=/";
-    }
 
 }

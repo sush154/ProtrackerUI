@@ -18,9 +18,8 @@ export class LoginProvider{
     }
 
     login(loginForm : any) : Promise<any> {
-        console.log("login provider", loginForm);
         return this.http
-        .post(this.loginUrl, JSON.stringify(loginForm), {headers: this.headers})
+        .post(this.loginUrl, JSON.stringify(loginForm), {headers: this.headers,withCredentials: true})
         .toPromise()
         .then(
             (res) => {

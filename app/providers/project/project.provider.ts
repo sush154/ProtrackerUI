@@ -23,9 +23,12 @@ export class ProjectProvider {
     getAllProjects() : Promise<Project[]> {
         let url = this.serviceUrl + "/getAllProjects";
         return this.http
-            .get(url)
+            .get(url,{headers: this.headers,withCredentials: true})
             .toPromise()
             .then((res) => {
+                if(res.json().data.status === 401){
+                    return res.json().data;
+                }
                 return res.json().data.projects as Project[];
             })
             .catch((err) => {
