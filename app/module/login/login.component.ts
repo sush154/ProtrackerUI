@@ -30,7 +30,6 @@ export class LoginComponent{
         this.loginProvider.login(login)
         .then((res) => {
             if(res.status === 200){
-                this.commonService.setCookies("userId",res.userId,1);
                 this.router.navigate(['/dashboard']);
             }else if(res.status === 401){
                 //TODO: toastr for unauthorised
