@@ -11,7 +11,7 @@
         <tr *ngFor="let project of projectsList">
             <td>{{project.projectId}}</td>
             <td>{{project.projectName}}</td>
-            <td>{{project.clientName}}</td>
+            <td>{{project.client.clientName}}</td>
         </tr>
         <tr *ngIf="projectsList?.length === 0">
             <td colspan="3">
