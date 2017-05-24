@@ -11,4 +11,5 @@ export class Task {
     comments : Comment[];
     taskStatus: string;
     assignedTo: string;
+    inDanger : boolean;
 }
