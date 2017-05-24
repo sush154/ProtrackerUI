@@ -1,4 +1,17 @@
-<div class="table-responsive">
-
-    This is tasks list on dashboard
+<div class="panel panel-default">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th colspan="3" class="tableHeader">
+                <span>
+                    <h5 class="">Tasks</h5>
+                    <i class="fa fa-pencil fa-1x"></i>
+                </span>
+            </th>
+        </tr>
+        <tr *ngFor="let task of taskList |  criticalitySort" [class.danger]="isInDanger(task.expectedComDate, task.taskStatus)">
+            <td>{{task.taskId}}</td>
+            <td>{{task.taskSummary}}</td>
+            <td>{{task.criticality}}</td>
+        </tr>
+    </table>
 </div>
