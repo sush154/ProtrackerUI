@@ -20,7 +20,7 @@ export class ProjectProvider {
          return Promise.reject(error.message || error);
      }
 
-    getAllProjects() : Promise<Project[]> {
+    getAllProjects() : Promise<any> {
         let url = this.serviceUrl + "/getAllProjects";
         return this.http
             .get(url,{headers: this.headers,withCredentials: true})
@@ -29,7 +29,7 @@ export class ProjectProvider {
                 if(res.json().data.status === 401){
                     return res.json().data;
                 }
-                return res.json().data.projects as Project[];
+                return res.json().data;
             })
             .catch((err) => {
                 this.handleError(err);
