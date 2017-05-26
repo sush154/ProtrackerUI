@@ -10,19 +10,19 @@ table tr {
     cursor: pointer;
 }
 
-.tableHeader {
-    background-color: #006064;
+.card {
+	width: 250px !important;
+	margin: 10px;
 }
-.tableHeader h5 {
-    color: #fff;
-    float: left;
-    margin-left: 10px;
+.fa {
+	color: #fff !important;
 }
-
-.tableHeader .fa {
-    float: right;
-    color: #fff;
-    margin-right: 15px;
-    margin-top: 10px;
-    cursor: pointer;
+.fa:hover {
+	cursor: pointer;
+}
+.card-text {
+	font-size: 14px;
+}
+.card-text label {
+	font-weight: bold;
 }
