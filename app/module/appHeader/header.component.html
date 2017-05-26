@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <nav class="navbar navbar-default navbar-custom">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle">
@@ -46,12 +46,88 @@
                             </ul>
                         </div>
                     </div>
-                    <!--<div *ngIf="!loggedIn" class="authButtons">
-                        <button type="button" class="btn btn-default signUpBtn" (click)="navigate('register')">Sign Up</button>
-                        <button type="button" class="btn btn-default signInBtn" (click)="navigate('login')">Sign In</button>
-                    </div>-->
                 </li>
             </ul>
         </div>
     </nav>
-</div>
+</div> -->
+
+<!--Navbar-->
+<!--<nav class="navbar navbar-toggleable-md navbar-dark teal">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <strong>Protracker</strong>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Notes</a>
+                </li>
+            </ul>
+            <form class="form-inline waves-effect waves-light">
+                <input class="form-control" type="text" placeholder="Search">
+            </form>
+            <ul>
+                <li class="nav-item dropdown btn-group dropdownLi">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item">Action</a>
+                        <a class="dropdown-item">Another action</a>
+                        <a class="dropdown-item">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-toggleable-md navbar-dark primary-color-dark">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <strong>Protracker</strong>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav2">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active" (click)="navigate('dashboard')" [class.active]="selectedPage === 'dashboard'">
+                    <a class="nav-link waves-effect waves-light">Dashboard</a>
+                </li>
+                <li class="nav-item" (click)="navigate('tasks')" [class.active]="selectedPage === 'tasks'">
+                    <a class="nav-link waves-effect waves-light">Tasks</a>
+                </li>
+                <li class="nav-item" (click)="navigate('projects')" [class.active]="selectedPage === 'projects'">
+                    <a class="nav-link waves-effect waves-light">Projects</a>
+                </li>
+                <li class="nav-item" (click)="navigate('notes')" [class.active]="selectedPage === 'notes'">
+                    <a class="nav-link waves-effect waves-light">Notes</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item dropdown btn-group">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item">Action</a>
+                        <a class="dropdown-item">Another action</a>
+                        <a class="dropdown-item">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
