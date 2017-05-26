@@ -12,4 +12,5 @@ export class Task {
     taskStatus: string;
     assignedTo: string;
     inDanger : boolean;
+    expectedComDate : string;
 }
