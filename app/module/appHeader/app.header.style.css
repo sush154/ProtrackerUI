@@ -1,300 +1,72 @@
-
-.signInBtn {
-    float: left !important;
-}
-
-.signUpBtn {
-    margin-right: 10px !important;
-    margin-left: 20px !important;
-}
-
-.headerBtnDiv{
-    margin-top: 7px;
-}
-
-.errorInput {
-    border-style: solid;
-    border-color: #CB0000;
-    color: #CB0000;
-}
-
-input.ng-invalid {
-    border-style: solid !important;
-    border-color: #CB0000 !important;
-    color: #CB0000 !important;
-}
-
-input.ng-invalid-required{
-    border-style: none !important;
-    color: #fff !important;
-}
-
-/*Mobile - iPhone 6, Samsung S series */
-@media (max-width:380px) and (max-height: 700px){
-    .signInBtn {
-        margin: 7px 35px 10px 0 !important;
-        background-color: aliceblue !important;
-    }
-
-    .signUpBtn {
-        margin: 7px 80px 10px 0 !important;
-        background-color: aliceblue !important;
-    }
-
-    .mainSection{
-        margin-top: -5%;
-    }
-
-    .login-wrap {
-        margin-top: -20px;
-    }
-    .hr {
-        margin:60px 0 50px 0;
-    }
-}
-
-/* For Nexus 6P */
-@media (max-width: 415px) and (max-height: 750px){
-    .signInBtn {
-        margin: 7px 35px 10px 0 !important;
-        background-color: aliceblue !important;
-    }
-
-    .signUpBtn {
-        margin: 7px 80px 10px 0 !important;
-        background-color: aliceblue !important;
-    }
-
-    .headerBtnDiv {
-        float: left;
-        margin-left: 20%;
-    }
-
-    .mainSection{
-        margin-top: -5%;
-    }
-
-    .login-wrap {
-        margin-top: -20px !important;
-        min-height: 800px !important;
-    }
-
-    .authDiv{
-        margin-left: 30% !important;
-    }
-
-    .hr
-    {
-        margin:60px 0 50px 0;
-    }
-}
-
-/* For iPhone 5*/
-@media (max-width: 321px) and (max-height: 570px){
-    .signInBtn {
-        margin: 7px 35px 10px 0 !important;
-        background-color: aliceblue !important;
-    }
-
-    .signUpBtn {
-        margin: 7px 49px 10px 0 !important;
-        background-color: aliceblue !important;
-    }
-
-    .headerBtnDiv {
-        float: left;
-        margin-left: 20%;
-    }
-
-    .mainSection{
-        margin-top: -6%;
-    }
-
-    .authDiv{
-        margin-left: 30% !important;
-    }
-
-    .hr
-    {
-        margin:60px 0 50px 0;
-    }
-}
-
-/* For iPads*/
-@media (min-width: 760px) and (max-height: 1024px) and (max-width: 770px){
-
-}
-
-
-.collapse.in {
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.navbar {
-	border: 0px !important;
-}
-
-.navbar-custom {
-	padding: 25px 0px;
-	background: #2c3e50 !important;
-	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-transform: uppercase;
-    font-weight: 700;
-    border: none;
-}
-
-.navbar-custom .navbar-brand {
-	font-size: 18px;
-}
-
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-brand.active,
-.navbar-custom .navbar-brand:active,
-.navbar-custom .navbar-brand:focus,
-.navbar-custom .navbar-brand:hover {
-    cursor: pointer;
-	color: #fff !important;
-}
-
-.navbar-custom .navbar-nav {
-	letter-spacing: 1px;
-}
-
-.navbar-custom .navbar-nav li.active a,
-.navbar-custom .navbar-nav li.active a:focus,
-.navbar-custom .navbar-nav li.active a:hover {
-	color: #fff !important;
-    background: #18BC9C !important;
-}
-
-.active {
-	color: #fff !important;
-    background: #18BC9C !important;
-}
-
-.navbar-custom .navbar-nav li a:focus,
-.navbar-custom .navbar-nav li a:hover {
-	color: #18BC9C !important;
-}
-
-.navbar-custom .navbar-nav>li>a {
-    cursor: pointer;
-	color: #fff !important;
-}
-
-.navbar-custom .navbar-toggle {
-	color: white !important;
-    text-transform: uppercase;
-    font-size: 10px;
-}
-
-.navbar-custom .navbar-toggle:hover,
-.navbar-custom .navbar-toggle:focus {
-	background-color: #18BC9C !important;
-    color: white !important;
-    border-color: #18BC9C !important;
-}
-
-.fa-user {
-	color: #fff !important;
-	cursor: pointer;
-}
-
-.ul-padding {
-    padding-top: 10px;
-}
-
-
-@media (max-width: 600px){
-	.navbar-custom {
-		padding: 0px;
-	}
-
-	.ul-padding {
-		margin-left: 5px !important;
-	}
-
-	.nav>li {
-		padding-left: 25px;
-	}
-}
-
-@media (min-width: 768px) {
-	.navbar {
-		border-radius: 0px !important;
-	}
-	.navbar-custom .navbar-brand {
-		font-size: 2em;
-		margin-right: 50px;
-	}
-
-	.authButtons {
-	    margin-left: -50px !important;
-	}
-
-	.navbar-nav>li {
-		width: 150px;
-    	text-align: center;
-	}
-}
-
-.profileBtn {
-    background: transparent;
-    border: 1px solid;
-    border-radius: 5px;
-    width: 70px;
-    height: 35px;
-    color: #fff;
+/*.navbar {
     text-transform: uppercase;
 }
-
-.profileBtn:hover,
-.profileBtn:focus {
-    background-color: #18BC9C !important;
-    color: white !important;
-    border-color: #18BC9C !important;
+.navbar-brand {
+    font-size: 20px;
+    padding: 20px 0px;
 }
-.profileMenu {
-    position: absolute;
-    background: #fff;
+.navbar-nav li {
     width: 150px;
-    margin-top: 5px;
-    border: 1px solid darkgray;
-    margin-left: -10px;
-    border-radius: 10px;
+    text-align: center;
+    padding: 15px 0px;
 }
 
-.profileMenu li {
-    list-style-type: none !important;
+.dropdownLi{
+    padding: 25px 0px 0px 25px;
+}
+*/
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 321px) and (max-height: 570px) {
+    .navbar-brand{
+        font-size: 18px;
+        font-weight: bold;
+    }
 }
 
-.dropdown-menu {
-    display : block !important;
-}
-.dropdown-menu>li>a {
-    color: #333 !important;
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) {
+    .navbar-brand{
+        font-size: 18px;
+        font-weight: bold;
+    }
 }
 
-.searchBox {
-    padding-top: 15px;
-    color: #fff;
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991px) {
+    .navbar-brand{
+        font-size: 18px;
+        font-weight: bold;
+    }
 }
-.searchIndex {
-    width: 250px !important;
+
+.container {
+    margin: 0px !important;
 }
-.searchInput {
-    width: 20px;
-    background: url(/app/style/images/search.png) center right no-repeat;
-    background-size: 20px 20px;
-    border: none;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-    cursor: pointer;
+.navbar {
+    text-transform: uppercase;
 }
-input[type="text"]:focus {
-    width: 200px;
-    border-bottom: 1px solid #fff;
-    outline: none;
+
+.navbar-brand {
+    font-size: 30px;
+    padding: 15px 45px 15px 0px;
+    font-weight: bold;
+}
+
+.navbar-nav li {
+    width: 150px;
+    text-align: center;
+}
+
+.navbar-nav li a {
+    padding: 15px 0px;
+}
+
+.dropdown-item {
+    padding: 8px !important;
+}
+
+.nav-item .active {
+    background: #18BC9C !important;
 }
