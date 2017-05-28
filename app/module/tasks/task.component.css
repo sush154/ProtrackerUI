@@ -1,0 +1,41 @@
+.card {
+    width: 250px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.view {
+    display: inline-block;
+}
+
+.card-block label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.mask {
+    background-color: #03a9f4;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.fa {
+    color: #fff;
+    cursor: pointer;
+}
+.fa-pencil-square {
+    margin-right: 50px !important;
+}
+
+.floatRight {
+    float: right;
+}
+.paddingTop {
+    padding-top: 20px;
+}
+
+.componentMargin {
+    margin: 20px 10px 0px 10px;
+}

@@ -1,2 +1,106 @@
 <app-header></app-header>
-This is Tasks Html
+<div class="container-fluid componentPadding">
+   <!--
+       <div class="componentPadding">
+        <div class="floatLeft"> 
+            <h5>Filters: </h5>
+        </div>
+        <div class="floatRight">
+            <button type="button" class="btn btn-indigo">Add Project</button>
+        </div>
+    </div>
+    <div class="componentPadding">
+        <div class="view overlay hm-blue-light">
+            <div class="card">
+                
+                <div class="card-block">
+                    <h4 class="card-title">P-001</h4>
+                    <h5 class="card-title">Project One</h5>
+                    <div>
+                        <label>Client Name: </label> Client One
+                    </div>
+                    <div>
+                        <label>Client Domain: </label> Banking
+                    </div>
+                </div>
+                <div class="mask flex-center hm-cyan-strong">
+                    <div class="floatLeft">
+                        <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="floatRight">
+                        <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>-->
+    <div class="row componentMargin">
+        <div class="floatLeft col-10"> 
+            <div style="display: inline-block">
+                <h5 class="paddingTop">Filters: </h5>
+            </div>
+            Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
+        </div>
+        <div class="floatRight col-2">
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#centralModalSm">Add Task</button>
+        </div>
+    </div>
+    <div>
+        <div class="view overlay hm-blue-light">
+            <div class="card">
+                
+                <div class="card-block">
+                    <h4 class="card-title">P-001</h4>
+                    <h5 class="card-title">Project One</h5>
+                    <div>
+                        <label>Client Name: </label> Client One
+                    </div>
+                    <div>
+                        <label>Client Domain: </label> Banking
+                    </div>
+                </div>
+                <div class="mask flex-center hm-cyan-strong">
+                    <div class="floatLeft">
+                        <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="floatRight">
+                        <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Add Task</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
+                    <label for="taskSummary">Task Summary</label>
+                    <input type="text" id="taskSummary" class="form-control">
+                </div>
+                <div class="md-form">
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description" class="md-textarea"></textarea>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

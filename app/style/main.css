@@ -3,6 +3,10 @@ body{
     overflow-x: hidden;
 }
 
+button {
+    font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+
 .componentPadding {
     padding: 20px 10px 0px 10px;
 }
