@@ -26,7 +26,7 @@
       'angular2-fontawesome': 'npm:angular2-fontawesome',
       'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-
+      'mydatepicker' : 'npm:mydatepicker/bundles/mydatepicker.umd.js',
       // other libraries
       'rxjs':                      'npm:rxjs'
     },
