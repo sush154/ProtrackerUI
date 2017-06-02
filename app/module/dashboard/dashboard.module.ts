@@ -4,14 +4,14 @@ import {AppHeaderModule} from '../appHeader/header.module';
 import {DashboardComponent} from './dashboard.component';
 import {DashboardTasks} from './dashboard-tasks.component';
 import {DashboardProjects} from './dashboard-projects.component';
-import {CriticalitySort} from '../../common/sort/criticality.sort';
+import {CriticalitySortModule} from '../../common/sort/criticality/criticality.sort.module';
 
 import {ProjectProvider} from '../../providers/project/project.provider';
 
 
 @NgModule({
-    imports:        [AppHeaderModule,CommonModule],
-    declarations:   [DashboardComponent,DashboardTasks,DashboardProjects,CriticalitySort],
+    imports:        [AppHeaderModule,CommonModule,CriticalitySortModule],
+    declarations:   [DashboardComponent,DashboardTasks,DashboardProjects],
     providers:      [ProjectProvider],
     exports:        [DashboardComponent]
 })

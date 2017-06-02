@@ -24,7 +24,6 @@ export class DashboardTasks implements OnInit{
     }
 
     isInDanger(expectedComDate : any, taskStatus : any): boolean{
-
         var parts = expectedComDate.split("T")[0].split("-");
         if(new Date(parts[0], parts[1]-1, parts[2]).setHours(0,0,0,0) < new Date().setHours(0,0,0,0)){
             if(taskStatus !== "Completed"){

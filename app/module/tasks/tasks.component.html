@@ -1,40 +1,5 @@
 <app-header></app-header>
 <div class="container-fluid componentPadding">
-   <!--
-       <div class="componentPadding">
-        <div class="floatLeft"> 
-            <h5>Filters: </h5>
-        </div>
-        <div class="floatRight">
-            <button type="button" class="btn btn-indigo">Add Project</button>
-        </div>
-    </div>
-    <div class="componentPadding">
-        <div class="view overlay hm-blue-light">
-            <div class="card">
-                
-                <div class="card-block">
-                    <h4 class="card-title">P-001</h4>
-                    <h5 class="card-title">Project One</h5>
-                    <div>
-                        <label>Client Name: </label> Client One
-                    </div>
-                    <div>
-                        <label>Client Domain: </label> Banking
-                    </div>
-                </div>
-                <div class="mask flex-center hm-cyan-strong">
-                    <div class="floatLeft">
-                        <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
-                    </div>
-                    <div class="floatRight">
-                        <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>-->
     <div class="row componentMargin">
         <div class="floatLeft col-10"> 
             <div style="display: inline-block">
@@ -47,25 +12,32 @@
         </div>
     </div>
     <div>
-        <div class="view overlay hm-blue-light">
+        <div class="view overlay hm-blue-light" *ngFor="let task of taskList | criticalitySort">
             <div class="card">
-                
-                <div class="card-block">
-                    <h4 class="card-title">P-001</h4>
-                    <h5 class="card-title">Project One</h5>
-                    <div>
-                        <label>Client Name: </label> Client One
+                <div [class.table-danger]="isInDanger(task.expectedComDate, task.taskStatus)" >
+                    <div class="card-block">
+                        <h4 class="card-title">{{task.taskId}}</h4>
+                        <h5 class="card-title">{{task.taskSummary}}</h5>
+                        <div>
+                            <label>Criticality: </label> {{task.criticality}}
+                        </div>
+                        <div>
+                            <label>Status: </label> {{task.taskStatus}}
+                        </div>
+                        <div *ngIf="task.taskStatus !== 'Completed'">
+                            <label>Expected Com. Date: </label> {{task.expectedComDate | date:'dd/MM/yyyy'}}
+                        </div>
+                        <div *ngIf="task.taskStatus === 'Completed'">
+                            <label>Completion Date: </label> {{task.completionDate | date:'dd/MM/yyyy'}}
+                        </div>
                     </div>
-                    <div>
-                        <label>Client Domain: </label> Banking
-                    </div>
-                </div>
-                <div class="mask flex-center hm-cyan-strong">
-                    <div class="floatLeft">
-                        <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
-                    </div>
-                    <div class="floatRight">
-                        <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                    <div class="mask flex-center hm-cyan-strong">
+                        <div class="floatLeft">
+                            <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="floatRight">
+                            <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                        </div>
                     </div>
                 </div>
             </div>

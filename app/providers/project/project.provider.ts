@@ -36,4 +36,18 @@ export class ProjectProvider {
             });
     }
 
+    addProject(project : any) : Promise<any> {
+        let url = this.serviceUrl + "/addProject";
+
+        return this.http
+            .post(url, JSON.stringify(project),{headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then(res => {
+                return res.json().data;
+            })
+            .catch(err => {
+                this.handleError(err);
+            });
+    }
+
 }

@@ -1,0 +1,90 @@
+.card {
+    width: 300px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.view {
+    display: inline-block;
+}
+
+.card-block label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.mask {
+    background-color: #03a9f4;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.fa {
+    color: #fff;
+    cursor: pointer;
+}
+.fa-info {
+    margin-right: 50px !important;
+}
+.fa-question-circle {
+    color: #004d40;
+    float: right;
+    padding-right: 50px;
+}
+
+.floatRight {
+    float: right;
+}
+.paddingTop {
+    padding-top: 20px;
+}
+
+.componentMargin {
+    margin: 20px 10px 0px 10px;
+}
+
+.clientPosition {
+    display: inline-block;
+}
+
+.addIconPosition {
+    padding-left: 15px;
+}
+.fa-caret-right,.fa-caret-down {
+    color: #01579b !important;
+    padding-left: 15px;
+}
+
+.checkboxInput {
+    border: 2px solid !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-color: darkgray !important;
+    outline: none !important;
+    transition: all 0.3s ease-out !important;
+    -webkit-transition: all 0.3s ease-out !important;
+    -ms-transition: all 0.3s ease-out !important;
+}
+.checkBoxLabel {
+    top: 0;
+    left: 30px;
+}
+
+#calendar {
+    border: 1px solid #dfdfdf;
+    font-family: Roboto, Arial, Helvetica;
+    font-size: 14px;
+    color: #404040;
+}
+
+.topStyling {
+    margin-top: 50px;
+}
+
+.helpLink {
+    float: right;
+    padding-right: 50px;
+    color: blue !important;
+}
