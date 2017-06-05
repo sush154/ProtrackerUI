@@ -1,6 +1,6 @@
 export const ClientDomainList = [
     {"id" : "Automotive", "name" : "Automotive"},
-    {"id" : "BFS", "name" : "Banking And Financial Services"},
+    {"id" : "BFS", "name" : "BFS"},
     {"id" : "Charity", "name" : "Charity"},
     {"id" : "DigitalMedia", "name" : "Digital Media"},
     {"id" : "EnergyUtilities", "name" : "Energy and Utilities"},
