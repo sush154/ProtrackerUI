@@ -27,6 +27,7 @@ export class ProjectsComponent{
     private myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
     };
+    private selectedProjectId : string;
 
     constructor(private projectProvider : ProjectProvider,
                 private router : Router,
@@ -69,19 +70,24 @@ export class ProjectsComponent{
         }
     }
 
+    selectProject(projectId : string) : void {
+        this.selectedProjectId = projectId;
+    }
+
     addClient() : void {
         this.clientProvider.addClient(this.newClient).then(res => {
-            this.toastrService.pop('success', 'Client Added', 'The Client is added successfully !');
-            this.getAllClients()
-            this.toggleAddClient();
+            if(res.status === 200) {
+                this.toastrService.pop('success', 'Client Added', 'The Client is added successfully !');
+                this.getAllClients()
+                this.toggleAddClient();
+            }
         });
     }
 
     addProject() : void {
 
-        if(this.newProject.expComDate !== undefined && this.newProject.expComDate !== 'undefined')  this.newProject.expComDate = this.newProject.expComDate.formatted;
-        if(this.newProject.completionDateDate !== undefined && this.newProject.completionDateDate !== 'undefined')  this.newProject.completionDateDate = this.newProject.completionDateDate.formatted;
-
+        if(this.newProject.expCompDate !== undefined && this.newProject.expCompDate !== 'undefined')  this.newProject.expCompDate = this.newProject.expCompDate.formatted;
+        if(this.newProject.completionDate !== undefined && this.newProject.completionDate !== 'undefined')  this.newProject.completionDate = this.newProject.completionDate.formatted;
 
         this.projectProvider.addProject(this.newProject).then(res => {
             if(res.status === 200){
@@ -96,6 +102,22 @@ export class ProjectsComponent{
             }
         });
 
+    }
+
+    deleteProject() : void {
+        $("#deleteProjectSm").modal('hide');
+        this.projectProvider.deleteProject(this.selectedProjectId).then(res => {
+            if(res.status === 200) {
+                this.toastrService.pop('success', 'Project Deleted', 'The Project is deleted successfully !');
+                this.getAllProjects();
+            }else{
+                this.toastrService.pop('success', 'Server Error', 'We encountered server error. Please try later !');
+            }
+        });
+    }
+
+    openProjectDetails(projectId : any) : void {
+        this.router.navigate(['/projects', projectId]);
     }
 
     ngOnInit(): void {
