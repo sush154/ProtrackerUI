@@ -1,0 +1,108 @@
+<app-header></app-header>
+<toaster-container></toaster-container>
+
+<div class="container-fluid componentPadding">
+    <div class="row componentMargin">
+        <div class="floatLeft col-10">
+            <button type="button" class="btn btn-deep-orange" (click)="backNavigation()">Back to Project List</button>
+        </div>
+        <div class="floatRight col-2">
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#editProjectSm" (click)="populateEditProject()">Edit Details</button>
+        </div>
+    </div>
+
+    <div class="container-fluid componentPadding projectDetails" *ngIf="(projectDetails | json)!== '{}'">
+        <h1 style="display: inline-block;padding-left: 40%;" class="display-4">{{projectDetails.projectId}}</h1>
+
+        <h4 style="display: inline-block; padding-left: 50px;">
+            <span class="badge green" *ngIf="!projectDetails.isCurrent">Completed Project</span>
+            <span class="badge blue" *ngIf="projectDetails.isCurrent">Current Project</span>
+        </h4>
+
+        <div class="projectDetailsPadding">
+            <dl class="row" *ngIf="projectDetails.isCurrent">
+                <dt class="col-sm-10"><h5 style="float: right;">Expected Completion Date: </h5></dt>
+                <dd class="col-sm-2">{{projectDetails.expCompDate | dateParser}}</dd>
+            </dl>
+            <dl class="row" *ngIf="!projectDetails.isCurrent">
+                <dt class="col-sm-10"><h5 style="float: right;">Completion Date: </h5></dt>
+                <dd class="col-sm-2">{{projectDetails.completionDate | dateParser}}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3"><h5>Project Name: </h5></dt>
+                <dd class="col-sm-9">{{projectDetails.projectName}}</dd>
+
+                <dt class="col-sm-3"><h5>Description: </h5></dt>
+                <dd class="col-sm-9">{{projectDetails.description}}</dd>
+
+                <dt class="col-sm-12" style="text-align: center;"><h3>Client Details</h3></dt>
+
+                <dt class="col-sm-3"><h5>Client Name: </h5></dt>
+                <dd class="col-sm-9">{{projectDetails.client.clientName}}</dd>
+
+                <dt class="col-sm-3"><h5>Client Description: </h5></dt>
+                <dd class="col-sm-9">{{projectDetails.client.description}}</dd>
+
+                <dt class="col-sm-3"><h5>Client Domain: </h5></dt>
+                <dd class="col-sm-9">{{projectDetails.client.clientDomain}}</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Project Popup Starts -->
+<div class="modal fade" id="editProjectSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" *ngIf="(editableProject | json) !== '{}'">
+    <div class="modal-dialog modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Edit Project</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <form name="editProjectForm" #editProjectForm="ngForm" id="addProjectForm">
+                <div class="modal-body">
+                    <div class="md-form">
+                        <label for="projectName" class="active">Project Name</label>
+                        <input type="text" id="projectName" name="projectName" class="form-control" [(ngModel)]="editableProject.projectName" required>
+                    </div>
+                    <div class="md-form">
+                        <label for="description" class="active">Description</label>
+                        <textarea type="text" id="description" name="description" class="md-textarea" [(ngModel)]="editableProject.description" required></textarea>
+                    </div>
+                    <div class="md-form">
+                        <select class="customSelect" [style.color]="clientStyling" id="projectSelect" name="projectSelect" [(ngModel)]="editableProject.client" #projectSelect (change)="changeStyling(projectSelect.value)" required>
+                            <option [value]="select">Please Select Client</option>
+                            <option [value]="client._id" *ngFor="let client of clientsList">{{client.clientName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="md-form topStyling">
+                        <input type="checkbox" class="checkboxInput" id="currentProject" name="currentProject" [(ngModel)]="editableProject.isCurrent">
+                        <span class="checkBoxLabel">Is it current project</span>
+                    </div>
+                    <div class="md-form topStyling" *ngIf="editableProject.isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
+                        <label style="margin-top: -50px;">Expected Completion Date</label>
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                        [(ngModel)]="editableProject.expCompDate" required></my-date-picker>
+                    </div>
+                    <div class="md-form topStyling" *ngIf="!editableProject.isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
+                        <label style="margin-top: -50px;">Completion Date</label>
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                        [(ngModel)]="editableProject.completionDate" required></my-date-picker>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" (click)="updateProject()">Update Project</button>
+                </div>
+            </form>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Edit Project Popup ends -->
