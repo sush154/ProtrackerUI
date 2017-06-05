@@ -88,3 +88,24 @@
     padding-right: 50px;
     color: blue !important;
 }
+.modal-sm {
+    width: 400px;
+    max-width: 600px !important;
+}
+
+.projectDetails h5 {
+    font-weight: bold !important;
+}
+
+.projectDetails dt,
+.projectDetails dd {
+    height: 60px;
+}
+
+.projectDetailsPadding {
+    margin: 50px 100px 0px 100px;
+}
+
+.attrSpan {
+    padding-left: 20px;
+}
