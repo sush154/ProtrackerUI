@@ -50,4 +50,47 @@ export class ProjectProvider {
             });
     }
 
+    deleteProject(projectId : string) : Promise<any> {
+        let url = this.serviceUrl + "/deleteProject";
+        let data = {"projectId" : projectId};
+        return this.http
+            .post(url, JSON.stringify(data), {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then(res => {
+                return res.json().data;
+            })
+            .catch( err => {
+                this.handleError(err);
+            });
+    }
+
+    getProjectDetails(projectId : string) : Promise<any> {
+        let url = this.serviceUrl + "/getProject/"+projectId;
+
+        return this.http
+            .get(url, {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then(res => {
+                return res.json().data;
+            })
+            .catch(err => {
+                this.handleError(err);
+            });
+    }
+
+    updateProject(project : any) : Promise<any> {
+
+        let url = this.serviceUrl + "/updateProject";
+
+        return this.http
+            .post(url, JSON.stringify(project), {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then(res => {
+                return res.json().data;
+            })
+            .catch(err => {
+                this.handleError(err);
+            });
+    }
+
 }
