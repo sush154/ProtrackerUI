@@ -24,15 +24,49 @@ export class ProjectsComponent{
     private clientStyling = "#757575";
     private addClientFlag : boolean = true;
     private clientDomainList : any = ClientDomainList;
+
     private myDatePickerOptions: IMyDpOptions = {
+        // other options...
         dateFormat: 'dd/mm/yyyy',
     };
+
     private selectedProjectId : string;
+
+    //let date = new Date();
+
+    private completionDate: Object = this.setDate('default');//{ date: { year: new Date.getFullYear(), month: new Date.getMonth()+1, day: new Date.getDate() } };
+    private expCompDate: Object = this.setDate('2017-06-07');//{ date: { year: new Date.getFullYear(), month: new Date.getMonth()+1, day: new Date.getDate() } };
 
     constructor(private projectProvider : ProjectProvider,
                 private router : Router,
                 private toastrService : ToasterService,
                 private clientProvider : ClientProvider){}
+
+    setDate(date : string) : Object {
+        var returnedDate = {};
+        if(date === 'default'){
+            let dt = new Date();
+           returnedDate = {date: {
+                    year: dt.getFullYear(),
+                    month: dt.getMonth() + 1,
+                    day: dt.getDate()
+                    }}
+
+        }else {
+            if(date !== undefined){
+                returnedDate = {
+                    date : {
+                        year : parseInt(date.split("-")[0]),
+                        month : parseInt(date.split("-")[1]),
+                        day : parseInt(date.split("-")[2])
+                    }
+                }
+            }
+
+        }
+
+        return returnedDate;
+    }
 
     getAllProjects() : void {
 
@@ -63,6 +97,7 @@ export class ProjectsComponent{
     }
 
     toggleAddClient() : void {
+    console.log(this.setDate('default'));
         if(this.addClientFlag){
             this.addClientFlag = false;
         }else {

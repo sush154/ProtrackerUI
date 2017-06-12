@@ -4,7 +4,7 @@ import {DateParser} from './app.date.parser';
 
 @NgModule({
     imports: [],
-    declarations: [DateParser];
+    declarations: [DateParser],
     exports: [DateParser]
 })
 

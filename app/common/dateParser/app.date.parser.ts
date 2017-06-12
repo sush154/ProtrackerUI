@@ -5,7 +5,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 
 export class DateParser implements PipeTransform{
-    transform(record : any) {
+    transform(record : any) :any {
 
         if((typeof record === 'string') && record !== undefined){
             let fullDate = record.split("T")[0];

@@ -8,12 +8,13 @@ import {ProjectDetailsComponent} from './project.details.component';
 import {ProjectSortModule} from '../../common/sort/project/project.sort.module';
 import {DateParserModule} from '../../common/dateParser/app.date.parser.module';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
-import {MyDatePickerModule} from 'mydatepicker';
+import { MyDatePickerModule } from 'mydatepicker';
+
 
 @NgModule({
     imports:        [AppHeaderModule, CommonModule, ProjectSortModule, ToasterModule,
-                        FormsModule, MyDatePickerModule,HelpModule,
-                        DateParserModule],
+                        FormsModule, HelpModule,
+                        DateParserModule, MyDatePickerModule],
     declarations:   [ProjectsComponent, ProjectDetailsComponent],
     providers:      [],
     exports:        [ProjectsComponent]

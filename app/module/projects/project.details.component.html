@@ -87,12 +87,12 @@
                     <div class="md-form topStyling" *ngIf="editableProject.isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
                         <label style="margin-top: -50px;">Expected Completion Date</label>
                         <my-date-picker name="mydate" [options]="myDatePickerOptions"
-                                        [(ngModel)]="editableProject.expCompDate" required></my-date-picker>
+                                        [(ngModel)]="expCompDate" required></my-date-picker>
                     </div>
                     <div class="md-form topStyling" *ngIf="!editableProject.isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
                         <label style="margin-top: -50px;">Completion Date</label>
                         <my-date-picker name="mydate" [options]="myDatePickerOptions"
-                                        [(ngModel)]="editableProject.completionDate" required></my-date-picker>
+                                        [(ngModel)]="completionDate" required></my-date-picker>
                     </div>
                 </div>
                 <!--Footer-->
