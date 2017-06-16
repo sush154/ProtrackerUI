@@ -8,7 +8,7 @@
             Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
         </div>
         <div class="floatRight col-2">
-            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#centralModalSm">Add Task</button>
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addTaskSm">Add Task</button>
         </div>
     </div>
     <div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="mask flex-center hm-cyan-strong">
                         <div class="floatLeft">
-                            <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
+                            <i class="fa fa-info fa-3x" aria-hidden="true"></i>
                         </div>
                         <div class="floatRight">
                             <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
@@ -42,10 +42,17 @@
                 </div>
             </div>
         </div>
+
+        <div *ngIf="taskList?.length === 0">
+            <blockquote class="blockquote bq-primary">
+                <p class="bq-title">NO TASKS !</p>
+                <p class="bq-message">There are no tasks available for current project. Please add by clicking "Add Task" button ! </p>
+            </blockquote>
+        </div>
     </div>
 </div>
 
-<div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="addTaskSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -57,16 +64,27 @@
                 </button>
             </div>
             <!--Body-->
-            <div class="modal-body">
-                <div class="md-form">
-                    <label for="taskSummary">Task Summary</label>
-                    <input type="text" id="taskSummary" class="form-control">
+            <form name="addTaskForm" #addTaskForm="ngForm" id="addTaskForm">
+                <div class="modal-body">
+                    <div class="md-form">
+                        <label for="taskSummary">Task Summary</label>
+                        <input type="text" id="taskSummary" class="form-control">
+                    </div>
+                    <div class="md-form">
+                        <label for="description">Description</label>
+                        <textarea type="text" id="description" class="md-textarea"></textarea>
+                    </div>
+                    <div class="md-form">
+                        <select class="customSelect" [style.color]="clientStyling" id="projectSelect" name="projectSelect" #projectSelect (change)="changeStyling(projectSelect.value)" required>
+                            <option [value]="select">Please Select Client</option>
+                            <option [value]="client1">Project One</option>
+                            <option [value]="client2">Project One</option>
+                            <option [value]="client3">Project One</option>
+                            <option [value]="client4">Project One</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="md-form">
-                    <label for="description">Description</label>
-                    <textarea type="text" id="description" class="md-textarea"></textarea>
-                </div>
-            </div>
+            </form>
             <!--Footer-->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
