@@ -109,3 +109,15 @@
 .attrSpan {
     padding-left: 20px;
 }
+
+.bq-message {
+    font-size: 25px !important;
+}
+
+.bq-title {
+    font-size: 40px !important
+}
+
+.bq-primary {
+    margin-top: 2rem;
+}
