@@ -119,10 +119,14 @@ export class ProjectsComponent{
         });
     }
 
+    formatDate(date : any) : string {
+        return date.formatted;
+    }
+
     addProject() : void {
 
-        if(this.newProject.expCompDate !== undefined && this.newProject.expCompDate !== 'undefined')  this.newProject.expCompDate = this.newProject.expCompDate.formatted;
-        if(this.newProject.completionDate !== undefined && this.newProject.completionDate !== 'undefined')  this.newProject.completionDate = this.newProject.completionDate.formatted;
+        if(this.expCompDate !== undefined && this.expCompDate !== 'undefined')  this.newProject.expCompDate = this.formatDate(this.expCompDate);
+        if(this.completionDate !== undefined && this.completionDate !== 'undefined')  this.newProject.completionDate = this.formatDate(this.completionDate);
 
         this.projectProvider.addProject(this.newProject).then(res => {
             if(res.status === 200){
