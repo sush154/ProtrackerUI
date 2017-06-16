@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let project of projectsList">
+            <tr *ngFor="let project of projectsList" (click)="openProjectDetails(project.projectId)">
                 <td>{{project.projectId}}</td>
                 <td>{{project.projectName}}</td>
                 <td>{{project.client.clientName}}</td>
