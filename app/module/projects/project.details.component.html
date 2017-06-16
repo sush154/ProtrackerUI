@@ -7,14 +7,14 @@
             <button type="button" class="btn btn-deep-orange" (click)="backNavigation()">Back to Project List</button>
         </div>
         <div class="floatRight col-2">
-            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#editProjectSm" (click)="populateEditProject()">Edit Details</button>
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#editProjectSm" (click)="populateEditProject()" [disabled]="!projectDetails.isCurrent">Edit Details</button>
         </div>
     </div>
 
     <div class="container-fluid componentPadding projectDetails" *ngIf="(projectDetails | json)!== '{}'">
         <h1 style="display: inline-block;padding-left: 40%;" class="display-4">{{projectDetails.projectId}}</h1>
 
-        <h4 style="display: inline-block; padding-left: 50px;">
+        <h4 style="display: inline-block; padding-left: 50px; vertical-align: super;">
             <span class="badge green" *ngIf="!projectDetails.isCurrent">Completed Project</span>
             <span class="badge blue" *ngIf="projectDetails.isCurrent">Current Project</span>
         </h4>
@@ -81,15 +81,15 @@
                     </div>
 
                     <div class="md-form topStyling">
-                        <input type="checkbox" class="checkboxInput" id="currentProject" name="currentProject" [(ngModel)]="editableProject.isCurrent">
+                        <input type="checkbox" class="checkboxInput" id="currentProject" name="currentProject" [(ngModel)]="isCurrent">
                         <span class="checkBoxLabel">Is it current project</span>
                     </div>
-                    <div class="md-form topStyling" *ngIf="editableProject.isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
+                    <div class="md-form topStyling" *ngIf="isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
                         <label style="margin-top: -50px;">Expected Completion Date</label>
                         <my-date-picker name="mydate" [options]="myDatePickerOptions"
                                         [(ngModel)]="expCompDate" required></my-date-picker>
                     </div>
-                    <div class="md-form topStyling" *ngIf="!editableProject.isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
+                    <div class="md-form topStyling" *ngIf="!isCurrent" style="position: relative; width: 250px; margin-top: 70px;">
                         <label style="margin-top: -50px;">Completion Date</label>
                         <my-date-picker name="mydate" [options]="myDatePickerOptions"
                                         [(ngModel)]="completionDate" required></my-date-picker>
