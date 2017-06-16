@@ -17,7 +17,7 @@ export class DashboardTasks implements OnInit{
     constructor(private taskService : TaskProvider, private router : Router){}
 
     getAllTasks() : void {
-        this.taskService.getAllTasks()
+        this.taskService.getProjectTasks()
         .then((res) => {
             this.taskList = res.tasks;
         });
