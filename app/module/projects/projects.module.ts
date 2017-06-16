@@ -17,7 +17,7 @@ import { MyDatePickerModule } from 'mydatepicker';
                         DateParserModule, MyDatePickerModule],
     declarations:   [ProjectsComponent, ProjectDetailsComponent],
     providers:      [],
-    exports:        [ProjectsComponent]
+    exports:        [ProjectsComponent, ProjectDetailsComponent]
 })
 
 export class ProjectsModule{}
