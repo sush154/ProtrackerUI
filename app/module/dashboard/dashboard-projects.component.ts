@@ -29,6 +29,10 @@ export class DashboardProjects implements OnInit{
 
     }
 
+    openProjectDetails(projectId : any) : void {
+        this.router.navigate(['/projects', projectId]);
+    }
+
     ngOnInit(): void {
         this.getAllProjects();
     }
