@@ -50,6 +50,12 @@
             </div>
 
         </div>
+        <div *ngIf="projectsList?.length === 0">
+            <blockquote class="blockquote bq-primary">
+                <p class="bq-title">NO PROJECTS !</p>
+                <p class="bq-message">There are no projects available for logged in user. Please add by clicking "Add Project" button ! </p>
+            </blockquote>
+        </div>
     </div>
 </div>
 <!-- Project List ends -->
