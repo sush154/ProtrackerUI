@@ -12,17 +12,26 @@ import {TaskProvider} from '../../providers/task/task.provider';
 export class TasksComponent implements OnInit{
 
     private taskList : any;
+    private dropdownStyling = "#757575";
 
     constructor(private taskProvider : TaskProvider, private router : Router){}
 
-    getAllTasks() : void {
-        this.taskProvider.getAllTasks()
+    getProjectTasks() : void {
+        this.taskProvider.getProjectTasks()
         .then((res) => {
             if(res.status === 401){
                 this.router.navigate(['/login']);
             }
             this.taskList = res.tasks;
         });
+    }
+
+    changeStyling(data : string) : void {
+        if(data !== 'undefined'){
+            this.dropdownStyling = "#000";
+        }else{
+            this.dropdownStyling = "#757575";
+        }
     }
 
     isInDanger(expectedComDate : any, taskStatus : any): boolean{
@@ -38,7 +47,7 @@ export class TasksComponent implements OnInit{
     }
 
     ngOnInit() : void {
-        this.getAllTasks();
+        this.getProjectTasks();
     }
     
 }
