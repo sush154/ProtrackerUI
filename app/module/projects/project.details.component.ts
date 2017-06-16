@@ -21,6 +21,7 @@ export class ProjectDetailsComponent implements OnInit{
     private clientsList : any;
     private projectDetails : any = {};
     private editableProject : any = {};
+    private isCurrent : boolean = false;
 
     private myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -56,7 +57,7 @@ export class ProjectDetailsComponent implements OnInit{
                     date : {
                         year : parseInt(date.split("-")[0]),
                         month : parseInt(date.split("-")[1]),
-                        day : parseInt(date.split("-")[2])
+                        day : parseInt(date.split("-")[2])+1
                     }
                 }
             }
@@ -72,7 +73,7 @@ export class ProjectDetailsComponent implements OnInit{
         this.editableProject.projectName = this.projectDetails.projectName;
         this.editableProject.description = this.projectDetails.description;
         this.editableProject.client = this.projectDetails.client._id;
-        this.editableProject.isCurrent = this.projectDetails.isCurrent;
+
         if(this.projectDetails.completionDate !== undefined){
             this.editableProject.completionDate = this.projectDetails.completionDate;
         }
@@ -96,13 +97,44 @@ export class ProjectDetailsComponent implements OnInit{
         });
     }
 
+    formatDate(date : any) : string {
+        return date.formatted;
+    }
+
+    getProjectDetails() : void {
+        this.currentRoute.params.subscribe(params => {
+            this.selectedProjectId = params['id'];
+            this.projectProvider.getProjectDetails(this.selectedProjectId)
+                .then(res => {
+                    if(res.status === 200){
+                        this.projectDetails = res.project;
+                        this.populateEditProject();
+                    }else{
+                        this.toastrService.pop('success', 'Server Error', 'We encountered server error. Please try later !');
+                    }
+
+                });
+        });
+    }
+
     updateProject() : void {
-        if(this.editableProject.expCompDate !== undefined && this.editableProject.expCompDate !== 'undefined')  this.editableProject.expCompDate = this.editableProject.expCompDate.formatted;
-        if(this.editableProject.completionDate !== undefined && this.editableProject.completionDate !== null)  this.editableProject.completionDate = this.editableProject.completionDate.formatted;
+        if(this.expCompDate !== undefined && this.expCompDate !== 'undefined')  this.editableProject.expCompDate = this.formatDate(this.expCompDate);
+        if(this.completionDate !== undefined && this.completionDate !== null)  this.editableProject.completionDate = this.formatDate(this.completionDate);
+
+        this.editableProject._id = this.projectDetails._id;
+        this.editableProject.isCurrent = this.isCurrent;
+
 
         this.projectProvider.updateProject(this.editableProject)
             .then(res => {
-                console.log(res);
+                if(res.status === 200){
+                    $("#editProjectSm").modal('hide');
+                    this.toastrService.pop('success', 'Project Updated', 'The Project is updated successfully !');
+                    this.getProjectDetails();
+                }
+                else if(res.status === 201){
+                    this.toastrService.pop('error', 'Current Project', 'You cannot mark two projects as current at same time. Please mark one project as complete.');
+                }
             });
     }
 
@@ -113,6 +145,7 @@ export class ProjectDetailsComponent implements OnInit{
                 .then(res => {
                     if(res.status === 200){
                         this.projectDetails = res.project;
+                        this.isCurrent = res.project.isCurrent;
                     }else{
                         this.toastrService.pop('success', 'Server Error', 'We encountered server error. Please try later !');
                     }
