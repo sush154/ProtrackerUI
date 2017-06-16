@@ -12,7 +12,7 @@ export class DateParser implements PipeTransform{
 
             let yr = fullDate.split("-")[0];
             let mn = fullDate.split("-")[1];
-            let dt = fullDate.split("-")[2];
+            let dt = parseInt(fullDate.split("-")[2])+1;
 
             return dt + "/" + mn + "/" + yr;
         }
