@@ -18,8 +18,8 @@ export class TaskProvider{
          return Promise.reject(error.message || error);
      }
 
-    getAllTasks() : Promise<any>{
-        let url = this.serviceUrl + "/getAllTasks";
+    getProjectTasks() : Promise<any>{
+        let url = this.serviceUrl + "/getProjectTasks";
         return this.http
             .get(url, {headers : this.headers,withCredentials: true})
             .toPromise()
