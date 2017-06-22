@@ -34,8 +34,8 @@ export class ProjectsComponent{
 
     //let date = new Date();
 
-    private completionDate: Object = this.setDate('default');//{ date: { year: new Date.getFullYear(), month: new Date.getMonth()+1, day: new Date.getDate() } };
-    private expCompDate: Object = this.setDate('2017-06-07');//{ date: { year: new Date.getFullYear(), month: new Date.getMonth()+1, day: new Date.getDate() } };
+    private completionDate: Object = this.setDate('default');
+    private expCompDate: Object = this.setDate('2017-06-07');
 
     constructor(private projectProvider : ProjectProvider,
                 private router : Router,
@@ -97,7 +97,6 @@ export class ProjectsComponent{
     }
 
     toggleAddClient() : void {
-    console.log(this.setDate('default'));
         if(this.addClientFlag){
             this.addClientFlag = false;
         }else {
@@ -150,7 +149,7 @@ export class ProjectsComponent{
                 this.toastrService.pop('success', 'Project Deleted', 'The Project is deleted successfully !');
                 this.getAllProjects();
             }else{
-                this.toastrService.pop('success', 'Server Error', 'We encountered server error. Please try later !');
+                this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
             }
         });
     }
