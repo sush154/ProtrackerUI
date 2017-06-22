@@ -23,7 +23,8 @@ const routes : Routes = [
     {path: 'notes', component: NotesComponent},
     {path: 'forgotPassword', component: ForgotPasswordComponent},
     {path: 'error', component: ServerErrorComponent},
-    {path: 'projects/:id', component: ProjectDetailsComponent}
+    {path: 'projects/:id', component: ProjectDetailsComponent},
+    {path: 'tasks/:id', component: TaskDetailsComponent}
 ]
 
 @NgModule({
