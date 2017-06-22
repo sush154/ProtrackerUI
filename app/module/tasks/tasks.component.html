@@ -1,4 +1,5 @@
 <app-header></app-header>
+<toaster-container></toaster-container>
 <div class="container-fluid componentPadding">
     <div class="row componentMargin">
         <div class="floatLeft col-10"> 
@@ -8,7 +9,7 @@
             Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
         </div>
         <div class="floatRight col-2">
-            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addTaskSm">Add Task</button>
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addTaskSm" (click)="populateNewTask()">Add Task</button>
         </div>
     </div>
     <div>
@@ -19,10 +20,10 @@
                         <h4 class="card-title">{{task.taskId}}</h4>
                         <h5 class="card-title">{{task.taskSummary}}</h5>
                         <div>
-                            <label>Criticality: </label> {{task.criticality}}
+                            <label>Criticality: </label> {{task.criticality | criticalityFilter}}
                         </div>
                         <div>
-                            <label>Status: </label> {{task.taskStatus}}
+                            <label>Status: </label> {{task.taskStatus | taskStatusFilter}}
                         </div>
                         <div *ngIf="task.taskStatus !== 'Completed'">
                             <label>Expected Com. Date: </label> {{task.expectedComDate | date:'dd/MM/yyyy'}}
@@ -33,7 +34,7 @@
                     </div>
                     <div class="mask flex-center hm-cyan-strong">
                         <div class="floatLeft">
-                            <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+                            <i class="fa fa-info fa-3x" aria-hidden="true" (click)="openTaskDetails(task.taskId)"></i>
                         </div>
                         <div class="floatRight">
                             <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
@@ -68,27 +69,41 @@
                 <div class="modal-body">
                     <div class="md-form">
                         <label for="taskSummary">Task Summary</label>
-                        <input type="text" id="taskSummary" class="form-control">
+                        <input type="text" id="taskSummary" name="taskSummary" class="form-control" [(ngModel)]="newTask.taskSummary">
                     </div>
                     <div class="md-form">
                         <label for="description">Description</label>
-                        <textarea type="text" id="description" class="md-textarea"></textarea>
+                        <textarea type="text" id="description" name="description" class="md-textarea" [(ngModel)]="newTask.description"></textarea>
                     </div>
                     <div class="md-form">
-                        <select class="customSelect" [style.color]="clientStyling" id="projectSelect" name="projectSelect" #projectSelect (change)="changeStyling(projectSelect.value)" required>
-                            <option [value]="select">Please Select Client</option>
-                            <option [value]="client1">Project One</option>
-                            <option [value]="client2">Project One</option>
-                            <option [value]="client3">Project One</option>
-                            <option [value]="client4">Project One</option>
+                        <div class="floatLeft clientPosition">
+                            <select class="customSelect" [style.color]="projectStyling" id="projectSelect" name="projectSelect" [(ngModel)]="newTask.projectId" #projectSelect (change)="changeStyling(projectSelect.value, 'projectStyling')" required [disabled]="!differentProject">
+                                <option [value]="select">Please Select Project</option>
+                                <option [value]="project._id" *ngFor="let project of projectsList">{{project.projectName}}</option>
+                            </select>
+                        </div>
+                        <div class="clientPosition addIconPosition" style="padding-top: 20px;">
+                            <input type="checkbox" class="checkboxInput" id="currentProject" name="currentProject" [(ngModel)]="differentProject">
+                            <span class="checkBoxLabel">Not your Project?</span>
+                        </div>
+                    </div>
+                    <div class="md-form">
+                        <select class="customSelect" [style.color]="criticalStyling" id="criticalSelect" name="criticalSelect" [(ngModel)]="newTask.criticality" #criticalSelect (change)="changeStyling(criticalSelect.value, 'criticalStyling')" required>
+                            <option [value]="select">Please Select Criticality</option>
+                            <option [value]="criticality.id" *ngFor="let criticality of criticalityList">{{criticality.value}}</option>
                         </select>
+                    </div>
+                    <div class="md-form topStyling" style="position: relative; width: 250px; margin-top: 70px;">
+                        <label style="margin-top: -50px;">Expected Completion Date</label>
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                        [(ngModel)]="expCompDate" required></my-date-picker>
                     </div>
                 </div>
             </form>
             <!--Footer-->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" [disabled]="!addTaskForm.form.valid" (click)="addTask()">Save changes</button>
             </div>
         </div>
         <!--/.Content-->

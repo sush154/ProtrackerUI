@@ -31,4 +31,32 @@ export class TaskProvider{
             })
     }
 
+    addTask(newTask : any) : Promise<any> {
+        let url = this.serviceUrl + "/addTask";
+
+        return this.http
+            .post(url, JSON.stringify(newTask), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
+    getTaskDetails(taskId : string) : Promise<any> {
+        let url = this.serviceUrl + "/getTask/"+taskId;
+
+        return this.http
+            .get(url, {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
 }
