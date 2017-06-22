@@ -19,7 +19,7 @@ export class CriticalitySort implements PipeTransform {
             let completedArr : any = [];
 
             for(let record of records){
-                if(record.criticality.toLowerCase() === 'show stopper'){
+                if(record.criticality === "1"){
                     if(record.taskStatus !== 'Completed'){
                         showStopperArr.push(record);
                     }
@@ -28,7 +28,7 @@ export class CriticalitySort implements PipeTransform {
                     }
                 }
 
-                else if(record.criticality.toLowerCase() === 'critical'){
+                else if(record.criticality === "2"){
                     if(record.taskStatus !== 'Completed'){
                         criticalArr.push(record);
                     }
@@ -37,7 +37,7 @@ export class CriticalitySort implements PipeTransform {
                     }
                 }
 
-                else if(record.criticality.toLowerCase() === 'major'){
+                else if(record.criticality === "3"){
                     if(record.taskStatus !== 'Completed'){
                         majorArr.push(record);
                     }
@@ -46,7 +46,7 @@ export class CriticalitySort implements PipeTransform {
                     }
                 }
 
-                else if(record.criticality.toLowerCase() === 'minor'){
+                else if(record.criticality === "4"){
                     if(record.taskStatus !== 'Completed'){
                         minorArr.push(record);
                     }
@@ -55,7 +55,7 @@ export class CriticalitySort implements PipeTransform {
                     }
                 }
 
-                else if(record.criticality.toLowerCase() === 'cosmetic'){
+                else if(record.criticality === "5"){
                     if(record.taskStatus !== 'Completed'){
                         cosmeticArr.push(record);
                     }
