@@ -24,6 +24,7 @@ export class ProjectsComponent{
     private clientStyling = "#757575";
     private addClientFlag : boolean = true;
     private clientDomainList : any = ClientDomainList;
+    private noProject : boolean = true;
 
     private myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -76,8 +77,14 @@ export class ProjectsComponent{
             }
             if(res.status === 201){
                 this.toastrService.pop('error', 'Current Project', 'You cannot mark two projects as current at same time. Please mark one project as complete.');
+            }else{
+                this.projectsList = res.projects;
+
+                if(res.projects.length > 0){
+                    this.noProject = false;
+                }
             }
-            this.projectsList = res.projects;
+
         });
 
     }
