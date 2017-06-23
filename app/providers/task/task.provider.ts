@@ -59,4 +59,63 @@ export class TaskProvider{
             });
     }
 
+    updateTask(updatedTask : any) : Promise<any> {
+        let url = this.serviceUrl + "/updateTask";
+
+        return this.http
+            .post(url, JSON.stringify(updatedTask), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
+    addComment(newComment : any) : Promise<any> {
+        let url = this.serviceUrl + "/addComment";
+
+        return this.http
+            .post(url, JSON.stringify(newComment), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            })
+    }
+
+    updateComment(updatedComment : any) : Promise<any> {
+        console.log(updatedComment);
+
+        let url = this.serviceUrl + "/updateComment";
+
+        return this.http
+            .post(url, JSON.stringify(updatedComment), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            })
+    }
+
+    deleteComment(deleteComment : any) : Promise<any> {
+        console.log(deleteComment);
+        let url = this.serviceUrl + "/deleteComment";
+
+        return this.http
+            .post(url, JSON.stringify(deleteComment), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
 }
