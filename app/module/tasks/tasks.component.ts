@@ -22,6 +22,7 @@ export class TasksComponent implements OnInit{
     private projectsList : any;
     private criticalityList : any = CRITICALITY;
     private differentProject : boolean = false;
+    private noTask : boolean = true;
 
     private myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -65,7 +66,7 @@ export class TasksComponent implements OnInit{
     }
 
     changeStyling(data : string, dropdownid : string) : void {
-        if(data !== 'undefined'){
+        if(data !== 'select'){
             if(dropdownid === 'projectStyling') this.projectStyling = "#000";
             if(dropdownid === 'criticalStyling') this.criticalStyling = "#000";
         }/*else{
@@ -103,8 +104,11 @@ export class TasksComponent implements OnInit{
         .then((res) => {
             if(res.status === 401){
                 this.router.navigate(['/login']);
-            }if (res.status === 200){
+            }else if (res.status === 200){
                 this.taskList = res.tasks;
+                this.noTask = false;
+            }else if(res.status === 201){
+                this.toastrService.pop('warning', 'No Task', 'There are no tasks available for current project. Please add use "Add Task" button!');
             }else {
                 this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
             }
