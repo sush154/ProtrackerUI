@@ -6,17 +6,19 @@
             <input id="tab-2" type="radio" name="tab" class="sign-up" checked>
             <label for="tab-2" class="tab">Sign Up</label>
         </div>
-        <div *ngIf="!registered" class="login-form">
+        <div *ngIf="!registered" class="login-form container">
 
             <div class="sign-up-htm">
                 <form name="registrationForm" #registrationForm="ngForm">
-                    <div class="group col-lg-6 col-md-12 col-sm-6">
-                        <label for="firstName" class="label">First Name</label>
-                        <input id="firstName" name="firstName" type="text" class="input" [(ngModel)]="registration.firstName" required>
-                    </div>
-                    <div class="group col-lg-6 col-md-12 col-sm-6">
-                        <label for="lastName" class="label">Last Name</label>
-                        <input id="lastName" type="text" class="input" name="lastName" [(ngModel)]="registration.lastName" required>
+                    <div class="row">
+                        <div class="group col">
+                            <label for="firstName" class="label">First Name</label>
+                            <input id="firstName" name="firstName" type="text" class="input" [(ngModel)]="registration.firstName" required>
+                        </div>
+                        <div class="group col">
+                            <label for="lastName" class="label">Last Name</label>
+                            <input id="lastName" type="text" class="input" name="lastName" [(ngModel)]="registration.lastName" required>
+                        </div>
                     </div>
                     <div class="group col-lg-12 col-md-12 col-sm-12">
                         <label for="emailAddress" class="label">Email Address</label>
