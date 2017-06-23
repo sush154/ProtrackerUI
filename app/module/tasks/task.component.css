@@ -71,10 +71,10 @@
     color: #008000 !important;
 }
 
-/*.fa-pencil, .fa-trash {
+.fa-pencil, .fa-trash {
     color: #01579b !important;
     font-size: 20px !important;
-}*/
+}
 
 .fa-long-arrow-down, .fa-times {
     color: #a9a9a9 !important;
