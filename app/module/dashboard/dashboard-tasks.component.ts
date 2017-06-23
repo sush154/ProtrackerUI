@@ -34,6 +34,10 @@ export class DashboardTasks implements OnInit{
         return false;
     }
 
+    openTaskDetails(taskId : string) : void {
+        this.router.navigate(['/tasks', taskId]);
+    }
+
     ngOnInit() : void {
         this.getAllTasks();
     }
