@@ -3,16 +3,16 @@
     <table class="table table-hover">
         <thead class="light-green lighten-3">
             <tr>
-                <th>#</th>
+                <th style="width: 15%;">#</th>
                 <th>Summary</th>
                 <th>Criticality</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of taskList |  criticalitySort" [class.table-danger]="isInDanger(task.expectedComDate, task.taskStatus)">
+            <tr *ngFor="let task of taskList |  criticalitySort" [class.table-danger]="isInDanger(task.expectedComDate, task.taskStatus)" (click)="openTaskDetails(task.taskId)">
                 <td>{{task.taskId}}</td>
                 <td>{{task.taskSummary}}</td>
-                <td>{{task.criticality}}</td>
+                <td>{{task.criticality | criticalityFilter}}</td>
             </tr>
         </tbody>
     </table>
