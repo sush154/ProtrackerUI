@@ -73,6 +73,20 @@ export class TaskProvider{
             });
     }
 
+    deleteTask(selectedTaskId : string) : Promise<any> {
+        let url = this.serviceUrl + "/deleteTask";
+        let data = {"taskId" : selectedTaskId};
+        return this.http
+            .post(url, JSON.stringify(data), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
     addComment(newComment : any) : Promise<any> {
         let url = this.serviceUrl + "/addComment";
 
@@ -109,6 +123,50 @@ export class TaskProvider{
 
         return this.http
             .post(url, JSON.stringify(deleteComment), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
+    changeStatus(task : any) : Promise<any> {
+        
+        let url = this.serviceUrl + "/changeStatus";
+
+        return this.http
+            .post(url, JSON.stringify(task), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+
+    }
+
+    markDefective(newComment : any) : Promise<any> {
+        let url = this.serviceUrl + "/markDefective";
+
+        return this.http
+            .post(url, JSON.stringify(newComment), {headers : this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            })
+    }
+
+    markComplete(markCompleteObj : any) : Promise<any> {
+        let url = this.serviceUrl + "/markComplete";
+
+        return this.http
+            .post(url, JSON.stringify(markCompleteObj), {headers : this.headers,withCredentials: true})
             .toPromise()
             .then((res) => {
                 return res.json().data;

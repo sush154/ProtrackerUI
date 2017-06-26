@@ -19,12 +19,17 @@ export class TaskDetailsComponent implements OnInit{
     private selectedTaskId : string;
     private taskDetails : any = {};
     private expCompDate: Object;
+    private completionDate : Object = this.setDate('default');
     private editableTasks : any = {};
     private criticalityList : any = CRITICALITY;
     private projectStyling = "#000";
     private criticalStyling = "#000";
     private newComment : any = {};
     private updatedComment : any = {};
+    private projectsList : any;
+    private defectiveComment : boolean = false;
+    private markCompleteObj : any = {};
+    private completedTask : boolean = false;
 
     private myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -98,6 +103,9 @@ export class TaskDetailsComponent implements OnInit{
                 .then(res => {
                     if(res.status === 200){
                         this.taskDetails = res.task;
+                        if(res.task.taskStatus === '4'){
+                            this.completedTask = true;
+                        }
                     }else{
                         this.toastrService.pop('success', 'Server Error', 'We encountered server error. Please try later !');
                     }
@@ -143,6 +151,7 @@ export class TaskDetailsComponent implements OnInit{
         this.taskProvider.addComment(this.newComment)
             .then((res) => {
                 if(res.status === 200){
+                    (<HTMLFormElement>document.getElementById("addCommentForm")).reset();
                     $("#addCommentSm").modal('hide');
                     this.toastrService.pop('success', 'Comment Added', 'The Comment is added successfully !');
                     this.getTaskDetails();
@@ -178,6 +187,55 @@ export class TaskDetailsComponent implements OnInit{
                     this.toastrService.pop('success', 'Comment Deleted', 'The Comment is deleted successfully !');
                     this.getTaskDetails();
                 }else {
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+            });
+    }
+
+    changeStatus(status : string, id : string) : void {
+        let task : any = {};
+        task.taskStatus = status;
+        task.taskId = id;
+
+        this.taskProvider.changeStatus(task)
+            .then((res) => {
+                if(res.status === 200){
+                    this.toastrService.pop('success', 'Task Updated', 'The Task Status is updated successfully !');
+                    this.getTaskDetails();
+                }else {
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+            });
+    }
+
+    markComplete(): void {
+        this.markCompleteObj.taskId = this.taskDetails._id;
+        this.markCompleteObj.completionDate = this.formatDate(this.completionDate);
+
+        this.taskProvider.markComplete(this.markCompleteObj)
+            .then((res) => {
+                if(res.status === 200){
+                    (<HTMLFormElement>document.getElementById("markCompleteForm")).reset();
+                    $("#markCompleteSm").modal('hide');
+                    this.toastrService.pop('success', 'Task Updated', 'The Task is marked as Complete !');
+                    this.getTaskDetails();
+                    this.completedTask = true;
+                }else {
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+            })
+    }
+
+    markDefective() : void {
+        this.newComment.taskId = this.taskDetails._id;
+        this.taskProvider.markDefective(this.newComment)
+            .then((res) => {
+                if(res.status === 200){
+                    (<HTMLFormElement>document.getElementById("addCommentForm")).reset();
+                    $("#addCommentSm").modal('hide');
+                    this.toastrService.pop('success', 'Task Updated', 'The Task is marked as Defective !');
+                    this.getTaskDetails();
+                }else{
                     this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
                 }
             });

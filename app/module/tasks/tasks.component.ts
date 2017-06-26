@@ -23,6 +23,7 @@ export class TasksComponent implements OnInit{
     private criticalityList : any = CRITICALITY;
     private differentProject : boolean = false;
     private noTask : boolean = true;
+    private selectedTask : string;
 
     private myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -78,7 +79,7 @@ export class TasksComponent implements OnInit{
 
         var parts = expectedComDate.split("T")[0].split("-");
         if(new Date(parts[0], parts[1]-1, parts[2]).setHours(0,0,0,0) < new Date().setHours(0,0,0,0)){
-            if(taskStatus !== "Completed"){
+            if(taskStatus !== "4"){
                 return true;
             }
         }
@@ -99,6 +100,10 @@ export class TasksComponent implements OnInit{
         }
     }
 
+    selectTask(selectedTask : string) : void {
+        this.selectedTask = selectedTask;
+    }
+
     getProjectTasks() : void {
         this.taskProvider.getProjectTasks()
         .then((res) => {
@@ -106,7 +111,11 @@ export class TasksComponent implements OnInit{
                 this.router.navigate(['/login']);
             }else if (res.status === 200){
                 this.taskList = res.tasks;
-                this.noTask = false;
+                if(res.tasks.length > 0){
+                    this.noTask = false;
+                }else {
+                    this.noTask = true;
+                }
             }else if(res.status === 201){
                 this.toastrService.pop('warning', 'No Task', 'There are no tasks available for current project. Please add use "Add Task" button!');
             }else {
@@ -140,6 +149,20 @@ export class TasksComponent implements OnInit{
                     this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
                 }
         });
+    }
+
+    deleteTask() : void {
+        $("#deleteTaskSm").modal('hide');
+
+        this.taskProvider.deleteTask(this.selectedTask)
+            .then((res) => {
+                if(res.status === 200){
+                    this.toastrService.pop('success', 'Task Deleted', 'The Task is deleted successfully !');
+                    this.getProjectTasks();
+                }else {
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+            });
     }
 
     ngOnInit() : void {

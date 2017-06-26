@@ -5,7 +5,7 @@ import {ClientProvider} from '../../providers/client/client.provider';
 import {ToasterService} from 'angular2-toaster';
 import {Project} from '../../model/project';
 import {ClientDomainList} from '../../sharedService/app.clients.domain';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+//import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {IMyDpOptions} from 'mydatepicker';
 
 @Component({

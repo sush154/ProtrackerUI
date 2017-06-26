@@ -15,5 +15,10 @@
                 <td>{{task.criticality | criticalityFilter}}</td>
             </tr>
         </tbody>
+        <tr *ngIf="taskList?.length === 0">
+            <td colspan="3">
+                No Tasks for current project
+            </td>
+        </tr>
     </table>
 </div>

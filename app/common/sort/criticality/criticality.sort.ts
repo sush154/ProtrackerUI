@@ -20,7 +20,7 @@ export class CriticalitySort implements PipeTransform {
 
             for(let record of records){
                 if(record.criticality === "1"){
-                    if(record.taskStatus !== 'Completed'){
+                    if(record.taskStatus !== '4'){
                         showStopperArr.push(record);
                     }
                     else {
@@ -29,7 +29,7 @@ export class CriticalitySort implements PipeTransform {
                 }
 
                 else if(record.criticality === "2"){
-                    if(record.taskStatus !== 'Completed'){
+                    if(record.taskStatus !== '4'){
                         criticalArr.push(record);
                     }
                     else {
@@ -38,7 +38,7 @@ export class CriticalitySort implements PipeTransform {
                 }
 
                 else if(record.criticality === "3"){
-                    if(record.taskStatus !== 'Completed'){
+                    if(record.taskStatus !== '4'){
                         majorArr.push(record);
                     }
                     else {
@@ -47,7 +47,7 @@ export class CriticalitySort implements PipeTransform {
                 }
 
                 else if(record.criticality === "4"){
-                    if(record.taskStatus !== 'Completed'){
+                    if(record.taskStatus !== '4'){
                         minorArr.push(record);
                     }
                     else {
@@ -56,7 +56,7 @@ export class CriticalitySort implements PipeTransform {
                 }
 
                 else if(record.criticality === "5"){
-                    if(record.taskStatus !== 'Completed'){
+                    if(record.taskStatus !== '4'){
                         cosmeticArr.push(record);
                     }
                     else {

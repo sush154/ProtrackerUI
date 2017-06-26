@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 import {ProjectProvider} from '../../providers/project/project.provider';
 import {ClientProvider} from '../../providers/client/client.provider';
 import {ToasterService} from 'angular2-toaster';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+//import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {IMyDpOptions} from 'mydatepicker';
 
 @Component({

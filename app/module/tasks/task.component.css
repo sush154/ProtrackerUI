@@ -35,6 +35,10 @@
     padding: 10px 50px 0px 50px;
 }
 
+.fa-3x {
+    font-size: 3em !important;
+}
+
 .floatRight {
     float: right;
 }
@@ -71,9 +75,14 @@
     color: #008000 !important;
 }
 
-.fa-pencil, .fa-trash {
+.commentIconsStyles {
     color: #01579b !important;
     font-size: 20px !important;
+}
+
+.modal-sm {
+    width: 400px;
+    max-width: 600px !important;
 }
 
 .fa-long-arrow-down, .fa-times {

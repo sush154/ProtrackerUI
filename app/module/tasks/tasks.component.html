@@ -25,10 +25,10 @@
                         <div>
                             <label>Status: </label> {{task.taskStatus | taskStatusFilter}}
                         </div>
-                        <div *ngIf="task.taskStatus !== 'Completed'">
+                        <div *ngIf="task.taskStatus !== '4'">
                             <label>Expected Com. Date: </label> {{task.expectedComDate | date:'dd/MM/yyyy'}}
                         </div>
-                        <div *ngIf="task.taskStatus === 'Completed'">
+                        <div *ngIf="task.taskStatus === '4'">
                             <label>Completion Date: </label> {{task.completionDate | date:'dd/MM/yyyy'}}
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <i class="fa fa-info fa-3x" aria-hidden="true" (click)="openTaskDetails(task.taskId)"></i>
                         </div>
                         <div class="floatRight">
-                            <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                            <i class="fa fa-trash fa-3x" aria-hidden="true" (click)="selectTask(task._id)" data-toggle="modal" data-target="#deleteTaskSm"></i>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,34 @@
             <!--Footer-->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" [disabled]="!addTaskForm.form.valid" (click)="addTask()">Save changes</button>
+                <button type="button" class="btn btn-primary" [disabled]="!addTaskForm.form.valid" (click)="addTask()">Add Task</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<!-- delete Project Confirmation Popup -->
+<div class="modal fade" id="deleteTaskSm" tabindex="-1" role="dialog" aria-labelledby="deleteTaskLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="deleteTaskLabel">DELETE TASK</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <h5>Are you sure want to delete the task?</h5>
+                The changes made could not be reverted back!
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="deleteTask()">Delete Task</button>
             </div>
         </div>
         <!--/.Content-->
