@@ -23,9 +23,13 @@
         </h4>
 
         <div class="projectDetailsPadding componentMargin">
-            <dl class="row">
+            <dl class="row" *ngIf="taskDetails.taskStatus !== '4'">
                 <dt class="col-sm-10"><h5 style="float: right;">Expected Completion Date: </h5></dt>
                 <dd class="col-sm-2">{{taskDetails.expectedComDate | dateParser}}</dd>
+            </dl>
+            <dl class="row" *ngIf="taskDetails.taskStatus === '4'">
+                <dt class="col-sm-10"><h5 style="float: right;">Completion Date: </h5></dt>
+                <dd class="col-sm-2">{{taskDetails.completionDate | dateParser}}</dd>
             </dl>
         </div>
 

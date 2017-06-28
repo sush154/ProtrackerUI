@@ -22,6 +22,7 @@ export class ProjectDetailsComponent implements OnInit{
     private projectDetails : any = {};
     private editableProject : any = {};
     private isCurrent : boolean = false;
+    private clientStyling : string = "#dropdownStyling";
 
     private myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -99,6 +100,14 @@ export class ProjectDetailsComponent implements OnInit{
 
     formatDate(date : any) : string {
         return date.formatted;
+    }
+
+    changeStyling(data : string) : void {
+        if(data !== 'undefined'){
+            this.clientStyling = "#000";
+        }else{
+            this.clientStyling= "#757575";
+        }
     }
 
     getProjectDetails() : void {

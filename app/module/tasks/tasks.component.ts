@@ -67,7 +67,7 @@ export class TasksComponent implements OnInit{
     }
 
     changeStyling(data : string, dropdownid : string) : void {
-        if(data !== 'select'){
+        if(data !== 'undefined'){
             if(dropdownid === 'projectStyling') this.projectStyling = "#000";
             if(dropdownid === 'criticalStyling') this.criticalStyling = "#000";
         }/*else{

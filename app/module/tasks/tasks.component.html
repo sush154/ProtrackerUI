@@ -18,7 +18,7 @@
                 <div [class.table-danger]="isInDanger(task.expectedComDate, task.taskStatus)" >
                     <div class="card-block">
                         <h4 class="card-title">{{task.taskId}}</h4>
-                        <h5 class="card-title">{{task.taskSummary}}</h5>
+                        <h5 class="card-title text-truncate">{{task.taskSummary}}</h5>
                         <div>
                             <label>Criticality: </label> {{task.criticality | criticalityFilter}}
                         </div>

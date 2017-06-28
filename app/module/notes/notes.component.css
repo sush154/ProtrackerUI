@@ -1,0 +1,51 @@
+.componentMargin {
+    margin: 20px 10px 0px 10px;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.paddingTop {
+    padding-top: 20px;
+}
+
+.floatRight {
+    float: right;
+}
+
+.commentIconsStyles {
+    color: #01579b !important;
+    font-size: 20px !important;
+}
+
+.notesUl {
+    height: 70px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    padding: 10px;
+    background : #b1d5b0;
+}
+
+.notesUl li {
+    width: 25%;
+    text-align: center;
+    line-height: 50px;
+}
+
+.nav-link {
+    border: inherit !important;
+    padding: 0 !important;
+}
+
+.margin-btm {
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    color: #000 !important;
+}
+
+.nav-link.active {
+    background : #7c9c7c !important;
+    color: #fff !important;
+}

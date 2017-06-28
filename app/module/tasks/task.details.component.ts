@@ -73,7 +73,7 @@ export class TaskDetailsComponent implements OnInit{
     }
 
     changeStyling(data : string) : void {
-        if(data !== 'select'){
+        if(data !== 'undefined'){
            this.criticalStyling = "#000";
         }else{
             this.criticalStyling = "#757575";

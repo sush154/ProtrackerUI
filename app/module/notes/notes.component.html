@@ -1,2 +1,144 @@
 <app-header></app-header>
-This is Notes Page
+<toaster-container></toaster-container>
+
+<div class="container-fluid componentPadding">
+    <div class="row componentMargin">
+        <div class="floatLeft col-10">
+            <div style="display: inline-block">
+                <h5 class="paddingTop">Filters: </h5>
+            </div>
+            Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
+        </div>
+        <div class="floatRight col-2">
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addNotesSm">Add Note</button>
+        </div>
+    </div>
+
+    <div class="componentPadding">
+        <ul class="nav nav-tabs tabs-3 notesUl" role="tablist">
+            <li class="nav-item" [class.active]="selectedNav === 'credentials'">
+                <a class="nav-link waves-effect waves-light active" data-toggle="tab" href="#credentialsDiv" role="tab">Credentials</a>
+            </li>
+            <li class="nav-item" [class.active]="selectedNav === 'url'">
+                <a class="nav-link waves-effect waves-light" data-toggle="tab" href="#urlsDiv" role="tab">URLs</a>
+            </li>
+            <li class="nav-item" [class.active]="selectedNav === 'sever'">
+                <a class="nav-link waves-effect waves-light" data-toggle="tab" href="#serverDiv" role="tab">Server Details</a>
+            </li>
+            <li class="nav-item" [class.active]="selectedNav === 'miscellaneous'">
+                <a class="nav-link waves-effect waves-light" data-toggle="tab" href="#miscellaneousDiv" role="tab">Miscellaneous</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <div class="componentPadding active tab-pane" id="credentialsDiv" style="padding-top: 50px;" role="tabpanel">
+            <ul class="list-group margin-btm" *ngFor="let cred of credenList">
+                <li class="list-group-item">
+                    <div class="view col-11" [innerHTML]="cred.note"></div>
+                    <div class="view floatRight col-1">
+                        <i class="fa fa-pencil commentIconsStyles" style="padding-right: 20px;"></i>
+                        <i class="fa fa-trash commentIconsStyles" aria-hidden="true"></i>
+                    </div>
+                </li>
+            </ul>
+            <div *ngIf="credenList?.length === 0">
+                There are no Notes under Credentials category !
+            </div>
+        </div>
+
+        <div class="componentPadding tab-pane" id="urlsDiv" style="padding-top: 50px;" role="tabpanel">
+            <ul class="list-group margin-btm" *ngFor="let url of urlsList">
+                <li class="list-group-item">{{url.note}}</li>
+            </ul>
+            <div *ngIf="urlsList?.length === 0">
+                There are no Notes under URLs category !
+            </div>
+        </div>
+
+        <div class="componentPadding tab-pane" id="serverDiv" style="padding-top: 50px;" role="tabpanel">
+            <ul class="list-group margin-btm" *ngFor="let server of serverList">
+                <li class="list-group-item">{{server.note}}</li>
+            </ul>
+            <div *ngIf="serverList?.length === 0">
+                There are no Notes under Server category !
+            </div>
+        </div>
+
+        <div class="componentPadding tab-pane" id="miscellaneousDiv" style="padding-top: 50px;" role="tabpanel">
+            <ul class="list-group margin-btm" *ngFor="let misc of miscList">
+                <li class="list-group-item">{{misc.note}}</li>
+            </ul>
+            <div *ngIf="miscList?.length === 0">
+                There are no Notes under Miscellaneous category !
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addNotesSm" tabindex="-1" role="dialog" aria-labelledby="myNotesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Add Note</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <form name="addNotesForm" #addNotesForm="ngForm" id="addNotesForm">
+                <div class="modal-body">
+                    <div class="md-form">
+                        <label for="notes">Notes Summary</label>
+                        <textarea type="text" id="notes" name="notes" class="md-textarea" [(ngModel)]="newNote.note"></textarea>
+                    </div>
+
+                    <div class="md-form">
+                        <select class="customSelect" [style.color]="dropdownStyling" id="notesTypes" name="notesTypes" #notesTypes (change)="changeStyling(notesTypes.value)" [(ngModel)]="newNote.noteType" required>
+                            <option [value]="select">Please Select Project</option>
+                            <option [value]="noteType.id" *ngFor="let noteType of notesTypesList">{{noteType.value}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="!addNotesForm.form.valid" (click)="addNote()">Add Note</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="editNoteSm" tabindex="-1" role="dialog" aria-labelledby="editNotesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="editNotesLabel">Note Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <form name="editNoteForm" id="editNoteForm" #editNoteForm="ngForm">
+                <div class="modal-body">
+                    <div class="md-form">
+                        <label for="editNote" class="active">Notes Summary</label>
+                        <textarea type="text" id="editNote" name="editNote" class="md-textarea" [(ngModel)]="editNote.note"></textarea>
+                    </div>
+                </div>
+            </form>
+
+            <!-- footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="!editNoteForm.form.valid" (click)="updateNote()">Update Note</button>
+            </div>
+        </div>
+    </div>
+</div>
