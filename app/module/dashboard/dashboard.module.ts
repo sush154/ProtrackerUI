@@ -6,12 +6,13 @@ import {DashboardTasks} from './dashboard-tasks.component';
 import {DashboardProjects} from './dashboard-projects.component';
 import {CriticalitySortModule} from '../../common/sort/criticality/criticality.sort.module';
 import {FilterModule} from '../../common/filters/app.filter.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import {ProjectProvider} from '../../providers/project/project.provider';
 
 
 @NgModule({
-    imports:        [AppHeaderModule,CommonModule,CriticalitySortModule, FilterModule],
+    imports:        [AppHeaderModule,CommonModule,CriticalitySortModule, FilterModule, NgxPaginationModule],
     declarations:   [DashboardComponent,DashboardTasks,DashboardProjects],
     providers:      [ProjectProvider],
     exports:        [DashboardComponent]

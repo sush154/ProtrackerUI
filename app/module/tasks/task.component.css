@@ -5,6 +5,7 @@
 }
 
 .view {
+.view {
     display: inline-block;
 }
 
@@ -32,7 +33,7 @@
 .fa-question-circle {
     color: #004d40;
     float: right;
-    padding: 10px 50px 0px 50px;
+    padding-right: 50px;
 }
 
 .fa-3x {
@@ -46,9 +47,6 @@
     padding-top: 20px;
 }
 
-.componentMargin {
-    margin: 20px 10px 0px 10px;
-}
 
 .projectDetailsPadding {
     margin: 50px 100px 0px 100px;

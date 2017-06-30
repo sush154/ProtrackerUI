@@ -15,13 +15,41 @@
     </div>
     <div class="row componentMargin">
         <div class="floatLeft col-10">
-            <div style="display: inline-block">
+            <div style="vertical-align: top;" class="view">
                 <h5 class="paddingTop">Filters: </h5>
             </div>
-            Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
+            <div class="view" style="margin-left: 30px;">
+                <div class="clientPosition addIconPosition">
+                    <input placeholder="Project Name" type="text" id="projectFilter" name="projectFilter" #projectFilter class="form-control" [disabled]="noProject">
+                </div>
+                <div class="clientPosition addIconPosition">
+                    <button type="button" class="btn btn-mdb" (click)="applyFilter('projectName', projectFilter.value)" [disabled]="noProject">Apply Filter</button>
+                </div>
+                <div class="clientPosition addIconPosition">
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse" [disabled]="noProject">Advanced Filter</button>
+                </div>
+            </div>
         </div>
         <div class="floatRight col-2">
             <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addProjectSm">Add Project</button>
+        </div>
+    </div>
+    <div class="row componentMargin collapse" id="filterCollapse">
+        <div class="card card-block filterCard">
+            <div>
+                <div class="view" style="margin-right: 20px;">
+                    <select class="customSelect" style="color:#000;" id="clientFilter" name="clientFilter" #clientFilter (change)="applyFilter('client', clientFilter.value)" required>
+                        <option [value]="select">Please Select Client</option>
+                        <option [value]="client._id" *ngFor="let client of clientsList">{{client.clientName}}</option>
+                    </select>
+                </div>
+                <div class="view">
+                    <select class="customSelect" style="color:#000;" id="domainFilter" name="domainFilter" #domainFilter (change)="applyFilter('clientDomain', domainFilter.value)" required>
+                        <option [value]="select">Please Select Client Domain</option>
+                        <option [value]="domain.name" *ngFor="let domain of clientDomainList">{{domain.name}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
     <div>
@@ -30,12 +58,22 @@
                 <div [class.table-success]="project.isCurrent">
                     <div class="card-block">
                         <h4 class="card-title">{{project.projectId}}</h4>
-                        <h5 class="card-title">{{project.projectName}}</h5>
-                        <div>
-                            <label>Client Name: </label> {{project.client.clientName}}
+                        <h5 class="card-title text-truncate">{{project.projectName}}</h5>
+                        <div class="row">
+                            <dt class="col-sm-6">
+                                <label>Client Name: </label>
+                            </dt>
+                            <dd class="col-sm-6 text-truncate">
+                                {{project.client.clientName}}
+                            </dd>
                         </div>
-                        <div>
-                            <label>Client Domain: </label> {{project.client.clientDomain}}
+                        <div class="row">
+                            <dt class="col-sm-6">
+                                <label>Client Domain: </label>
+                            </dt>
+                            <dd class="col-sm-6 text-truncate">
+                                {{project.client.clientDomain}}
+                            </dd>
                         </div>
                     </div>
                     <div class="mask flex-center hm-cyan-strong">

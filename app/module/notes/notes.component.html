@@ -35,12 +35,17 @@
         <div class="componentPadding active tab-pane" id="credentialsDiv" style="padding-top: 50px;" role="tabpanel">
             <ul class="list-group margin-btm" *ngFor="let cred of credenList">
                 <li class="list-group-item">
-                    <div class="view col-11" [innerHTML]="cred.note"></div>
-                    <div class="view floatRight col-1">
-                        <i class="fa fa-pencil commentIconsStyles" style="padding-right: 20px;"></i>
-                        <i class="fa fa-trash commentIconsStyles" aria-hidden="true"></i>
+                    <div class="disp">
+                        <div class="view col-11" [innerHTML]="cred.note"></div>
+                        <div class="view floatRight col-1">
+                            <span>
+                                <i class="fa fa-pencil commentIconsStyles" style="padding-right: 20px;" data-toggle="modal" data-target="#editNoteSm" (click)="populateEditNote(cred)"></i>
+                                <i class="fa fa-trash commentIconsStyles" aria-hidden="true" data-toggle="modal" data-target="#deleteNoteSm" (click)="populateEditNote(cred)"></i>
+                            </span>
+                        </div>
                     </div>
                 </li>
+
             </ul>
             <div *ngIf="credenList?.length === 0">
                 There are no Notes under Credentials category !
@@ -49,7 +54,17 @@
 
         <div class="componentPadding tab-pane" id="urlsDiv" style="padding-top: 50px;" role="tabpanel">
             <ul class="list-group margin-btm" *ngFor="let url of urlsList">
-                <li class="list-group-item">{{url.note}}</li>
+                <li class="list-group-item">
+                    <div class="disp">
+                        <div class="view col-11" [innerHTML]="url.note"></div>
+                        <div class="view floatRight col-1">
+                                <span>
+                                    <i class="fa fa-pencil commentIconsStyles" style="padding-right: 20px;" data-toggle="modal" data-target="#editNoteSm" (click)="populateEditNote(url)"></i>
+                                    <i class="fa fa-trash commentIconsStyles" aria-hidden="true" data-toggle="modal" data-target="#deleteNoteSm" (click)="populateEditNote(url)"></i>
+                                </span>
+                        </div>
+                    </div>
+                </li>
             </ul>
             <div *ngIf="urlsList?.length === 0">
                 There are no Notes under URLs category !
@@ -58,7 +73,17 @@
 
         <div class="componentPadding tab-pane" id="serverDiv" style="padding-top: 50px;" role="tabpanel">
             <ul class="list-group margin-btm" *ngFor="let server of serverList">
-                <li class="list-group-item">{{server.note}}</li>
+                <li class="list-group-item">
+                    <div class="disp">
+                        <div class="view col-11" [innerHTML]="server.note"></div>
+                        <div class="view floatRight col-1">
+                                <span>
+                                    <i class="fa fa-pencil commentIconsStyles" style="padding-right: 20px;" data-toggle="modal" data-target="#editNoteSm" (click)="populateEditNote(server)"></i>
+                                    <i class="fa fa-trash commentIconsStyles" aria-hidden="true" data-toggle="modal" data-target="#deleteNoteSm" (click)="populateEditNote(server)"></i>
+                                </span>
+                        </div>
+                    </div>
+                </li>
             </ul>
             <div *ngIf="serverList?.length === 0">
                 There are no Notes under Server category !
@@ -67,7 +92,17 @@
 
         <div class="componentPadding tab-pane" id="miscellaneousDiv" style="padding-top: 50px;" role="tabpanel">
             <ul class="list-group margin-btm" *ngFor="let misc of miscList">
-                <li class="list-group-item">{{misc.note}}</li>
+                <li class="list-group-item">
+                    <div class="disp">
+                        <div class="view col-11" [innerHTML]="misc.note"></div>
+                        <div class="view floatRight col-1">
+                                <span>
+                                    <i class="fa fa-pencil commentIconsStyles" style="padding-right: 20px;" data-toggle="modal" data-target="#editNoteSm" (click)="populateEditNote(misc)"></i>
+                                    <i class="fa fa-trash commentIconsStyles" aria-hidden="true" data-toggle="modal" data-target="#deleteNoteSm" (click)="populateEditNote(misc)"></i>
+                                </span>
+                        </div>
+                    </div>
+                </li>
             </ul>
             <div *ngIf="miscList?.length === 0">
                 There are no Notes under Miscellaneous category !
@@ -140,5 +175,32 @@
                 <button type="button" class="btn btn-primary" [disabled]="!editNoteForm.form.valid" (click)="updateNote()">Update Note</button>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- delete Project Confirmation Popup -->
+<div class="modal fade" id="deleteNoteSm" tabindex="-1" role="dialog" aria-labelledby="deleteNoteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="deleteNoteLabel">DELETE NOTE</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <h5>Are you sure want to delete the task?</h5>
+                The changes made could not be reverted back!
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="deleteNote()">Delete Note</button>
+            </div>
+        </div>
+        <!--/.Content-->
     </div>
 </div>

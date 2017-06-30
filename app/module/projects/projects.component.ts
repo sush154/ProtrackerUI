@@ -82,6 +82,8 @@ export class ProjectsComponent{
 
                 if(res.projects.length > 0){
                     this.noProject = false;
+                }else if(res.projects.length === 0) {
+                    this.noProject = true;
                 }
             }
 
@@ -131,8 +133,8 @@ export class ProjectsComponent{
 
     addProject() : void {
 
-        if(this.expCompDate !== undefined && this.expCompDate !== 'undefined')  this.newProject.expCompDate = this.formatDate(this.expCompDate);
-        if(this.completionDate !== undefined && this.completionDate !== 'undefined')  this.newProject.completionDate = this.formatDate(this.completionDate);
+        if(this.expCompDate)  this.newProject.expCompDate = this.formatDate(this.expCompDate);
+        if(this.completionDate)  this.newProject.completionDate = this.formatDate(this.completionDate);
 
         this.projectProvider.addProject(this.newProject).then(res => {
             if(res.status === 200){
@@ -163,6 +165,30 @@ export class ProjectsComponent{
 
     openProjectDetails(projectId : any) : void {
         this.router.navigate(['/projects', projectId]);
+    }
+
+    applyFilter(filterType : string, filterValue : string) : void {
+        this.projectProvider.applyProjectIdFilter(filterValue, filterType)
+            .then((res) => {
+                if(res.status === 401){
+                    this.router.navigate(['/login']);
+                }
+                if(res.status === 200){
+                    this.projectsList = res.projects;
+
+                    if(res.projects.length === 0){
+                        this.noProject = true;
+                    }else if(res.projects.length > 0){
+                        this.noProject = false;
+                    }
+                }else{
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+            })
+    }
+
+    getValue() : void {
+        console.log("asdasd");
     }
 
     ngOnInit(): void {

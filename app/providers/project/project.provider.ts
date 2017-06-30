@@ -93,4 +93,20 @@ export class ProjectProvider {
             });
     }
 
+    applyProjectIdFilter(filterValue : string, filterType : string) : Promise<any> {
+        let url = this.serviceUrl + "/projectFilter";
+
+        let data = {'filterType' : filterType, 'filterValue' : filterValue}
+
+        return this.http
+            .post(url,JSON.stringify(data), {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
 }

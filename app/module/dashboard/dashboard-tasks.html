@@ -9,12 +9,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of taskList |  criticalitySort" [class.table-danger]="isInDanger(task.expectedComDate, task.taskStatus)" (click)="openTaskDetails(task.taskId)">
+            <tr *ngFor="let task of taskList |  criticalitySort | paginate: { itemsPerPage: 10, currentPage: t, id: 'second' }" [class.table-danger]="isInDanger(task.expectedComDate, task.taskStatus)" (click)="openTaskDetails(task.taskId)">
                 <td>{{task.taskId}}</td>
                 <td>{{task.taskSummary}}</td>
                 <td>{{task.criticality | criticalityFilter}}</td>
             </tr>
         </tbody>
+        <tr *ngIf="taskList?.length > 0">
+            <td colspan="3">
+                <pagination-controls (pageChange)="t = $event" id="second"></pagination-controls>
+            </td>
+        </tr>
         <tr *ngIf="taskList?.length === 0">
             <td colspan="3">
                 No Tasks for current project

@@ -28,7 +28,8 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.min.js',
       // other libraries
-      'rxjs':                      'npm:rxjs'
+      'rxjs':                      'npm:rxjs',
+      'ngx-pagination': 'https://npmcdn.com/ngx-pagination'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

@@ -54,13 +54,11 @@ export class NotesComponent implements OnInit{
             }
         }
 
-
-        console.log(this.credenList.length, this.urlsList.length, this.serverList.length, this.miscList.length);
     };
 
     populateEditNote(note : any) : void {
         this.editNote._id = note._id;
-        this.editNote.note = note.note;
+        this.editNote.note = note.note.replace(/<br ?\/?>/g, "\n");
         this.editNote.noteType = note.noteType;
     }
 
@@ -78,7 +76,6 @@ export class NotesComponent implements OnInit{
     };
 
     addNote() : void {
-        console.log(this.newNote);
         this.noteProvider.addNote(this.newNote)
             .then((res) => {
                 if(res.status === 200){
@@ -93,6 +90,37 @@ export class NotesComponent implements OnInit{
                 }
             })
     };
+
+    updateNote() : void {
+        this.noteProvider.updateNote(this.editNote)
+            .then((res) => {
+                if(res.status === 200){
+                    this.toastrService.pop('success', 'Note Updated', 'The Note is updated successfully !');
+                    $("#editNoteSm").modal('hide');
+                    this.getAllNotes();
+                }else if(res.status === 401) {
+                    this.router.navigate(['/login']);
+                }else {
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+            })
+    };
+
+    deleteNote() : void {
+        this.noteProvider.deleteNote(this.editNote._id)
+            .then((res) => {
+                if(res.status === 200) {
+                    this.toastrService.pop('success', 'Note Deleted', 'The Note is deleted successfully !');
+                    $("#deleteNoteSm").modal('hide');
+                    this.getAllNotes();
+                }else if (res.status === 401) {
+                    this.router.navigate(['/login']);
+                }else {
+                    this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+                }
+
+            })
+    }
 
     ngOnInit() : void {
         this.getAllNotes();

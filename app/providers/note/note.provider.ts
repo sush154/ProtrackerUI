@@ -33,11 +33,41 @@ export class NoteProvider{
             });
     }
 
-    addNote(newNote : any) : void {
+    addNote(newNote : any) : Promise<any> {
         let url = this.serviceUrl + '/addNote';
 
         return this.http
             .post(url, JSON.stringify(newNote), {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            });
+    }
+
+    updateNote(updatedNote : any) : Promise<any> {
+        let url = this.serviceUrl + "/updateNote";
+
+        return this.http
+            .post(url, JSON.stringify(updatedNote), {headers: this.headers,withCredentials: true})
+            .toPromise()
+            .then((res) => {
+                return res.json().data;
+            })
+            .catch((err) => {
+                this.handleError(err);
+            })
+    };
+
+    deleteNote(noteId : string) : Promise<any> {
+        let url = this.serviceUrl + "/deleteNote";
+
+        var data = {"noteId" : noteId};
+
+        return this.http
+            .post(url, JSON.stringify(data), {headers: this.headers,withCredentials: true})
             .toPromise()
             .then((res) => {
                 return res.json().data;

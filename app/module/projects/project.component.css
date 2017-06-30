@@ -1,5 +1,5 @@
 .card {
-    width: 300px;
+    width: 350px;
     display: inline-block;
     margin: 20px;
 }
@@ -41,9 +41,6 @@
     padding-top: 20px;
 }
 
-.componentMargin {
-    margin: 20px 10px 0px 10px;
-}
 
 .addIconPosition {
     display: inline-block;
@@ -120,4 +117,9 @@
 
 .bq-primary {
     margin-top: 2rem;
+}
+
+.filterCard {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
 }
