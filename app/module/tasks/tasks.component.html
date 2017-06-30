@@ -15,7 +15,7 @@
             Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
         </div>
         <div class="floatRight col-2">
-            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addTaskSm" (click)="populateNewTask()">Add Task</button>
+            <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addTaskSm" (click)="populateNewTask()" [disabled]="checkCurrentProject()">Add Task</button>
         </div>
     </div>
     <div>

@@ -15,9 +15,9 @@
                 <td>{{project.client.clientName}}</td>
             </tr>
         </tbody>
-        <tr *ngIf="projectsList?.length > 0">
+        <tr *ngIf="projectsList?.length > 10">
             <td colspan="3">
-                <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event" id="first" style="float: right;"></pagination-controls>
             </td>
         </tr>
         <tr *ngIf="projectsList?.length === 0">

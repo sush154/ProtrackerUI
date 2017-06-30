@@ -91,12 +91,26 @@ export class TasksComponent implements OnInit{
         this.router.navigate(['/tasks', taskId]);
     }
 
-    populateNewTask() : void {
-        var cookies = document.cookie.split(';');
+    getCurrentProject() : string {
+        let cookies = document.cookie.split(';');
+        let currentProject : string;
         for(let c of cookies){
             if(c.split('=')[0].trim() === 'currentProject'){
-                this.newTask.projectId = c.split('=')[1].trim();
+                currentProject = c.split('=')[1].trim();
             }
+        }
+        return currentProject;
+    }
+
+    populateNewTask() : void {
+        this.newTask.projectId = this.getCurrentProject();
+    }
+
+    checkCurrentProject() : boolean {
+        if(this.getCurrentProject() !== ''){
+            return false;
+        }else {
+            return true;
         }
     }
 

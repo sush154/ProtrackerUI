@@ -20,13 +20,13 @@
             </div>
             <div class="view" style="margin-left: 30px;">
                 <div class="clientPosition addIconPosition">
-                    <input placeholder="Project Name" type="text" id="projectFilter" name="projectFilter" #projectFilter class="form-control" [disabled]="noProject">
+                    <input placeholder="Project Name" type="text" id="projectFilter" name="projectFilter" #projectFilter class="form-control">
                 </div>
                 <div class="clientPosition addIconPosition">
-                    <button type="button" class="btn btn-mdb" (click)="applyFilter('projectName', projectFilter.value)" [disabled]="noProject">Apply Filter</button>
+                    <button type="button" class="btn btn-mdb" (click)="applyFilter('projectName', projectFilter.value)" >Apply Filter</button>
                 </div>
                 <div class="clientPosition addIconPosition">
-                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse" [disabled]="noProject">Advanced Filter</button>
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">Advanced Filter</button>
                 </div>
             </div>
         </div>
