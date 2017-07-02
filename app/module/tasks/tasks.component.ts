@@ -5,6 +5,7 @@ import {ToasterService} from 'angular2-toaster';
 import {IMyDpOptions} from 'mydatepicker';
 import {ProjectProvider} from '../../providers/project/project.provider';
 import {CRITICALITY} from '../../sharedService/app.criticality';
+import {TASKSTATUS} from '../../sharedService/app.task.status';
 
 @Component({
     selector: 'app-tasks',
@@ -24,6 +25,7 @@ export class TasksComponent implements OnInit{
     private differentProject : boolean = false;
     private noTask : boolean = true;
     private selectedTask : string;
+    private taskStatusList : any = TASKSTATUS;
 
     private myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -179,10 +181,34 @@ export class TasksComponent implements OnInit{
             });
     }
 
+    applyFilter(filterType : string, filterValue : string) : void {
+
+      if(filterValue === 'undefined'){
+        filterValue = '';
+      }
+
+      this.taskProvider.applyFilter(filterValue, filterType)
+          .then((res) => {
+              if(res.status === 401){
+                  this.router.navigate(['/login']);
+              }
+              if(res.status === 200){
+                  this.taskList = res.tasks;
+
+                  if(res.tasks.length === 0){
+                      this.noTask = true;
+                  }else if(res.tasks.length > 0){
+                      this.noTask = false;
+                  }
+              }else{
+                  this.toastrService.pop('error', 'Server Error', 'We encountered server error. Please try later !');
+              }
+          });
+    }
+
     ngOnInit() : void {
         this.getProjectTasks();
         this.getAllProjects();
-
     }
-    
+
 }

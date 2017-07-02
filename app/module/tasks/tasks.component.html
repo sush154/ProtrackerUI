@@ -8,14 +8,48 @@
         </div>
     </div>
     <div class="row componentMargin">
-        <div class="floatLeft col-10"> 
-            <div style="display: inline-block">
+        <div class="floatLeft col-10">
+            <div class="view" style="vertical-align: top;">
                 <h5 class="paddingTop">Filters: </h5>
             </div>
-            Display button with show filter name, on click of which will expand area below it and which will have the filter criteria
+            <div class="view" style="margin-left: 30px;">
+                <div class="clientPosition addIconPosition">
+                    <input placeholder="Task Summary" type="text" id="taskFilter" name="taskFilter" #taskFilter class="form-control">
+                </div>
+                <div class="clientPosition addIconPosition">
+                    <button type="button" class="btn btn-mdb" (click)="applyFilter('taskSummary', taskFilter.value)" >Apply Filter</button>
+                </div>
+                <div class="clientPosition addIconPosition">
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">Advanced Filter</button>
+                </div>
+            </div>
         </div>
         <div class="floatRight col-2">
             <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#addTaskSm" (click)="populateNewTask()" [disabled]="checkCurrentProject()">Add Task</button>
+        </div>
+    </div>
+    <div class="row componentMargin collapse" id="filterCollapse">
+        <div class="card card-block filterCard">
+            <div>
+                <div class="view" style="margin-right: 20px;">
+                  <select class="customSelect" style="color:#000;" id="statusFilter" name="statusFilter" #statusFilter (change)="applyFilter('taskStatus', statusFilter.value)">
+                      <option [value]="select">Please Select Status Filter</option>
+                      <option [value]="status.id" *ngFor="let status of taskStatusList">{{status.value}}</option>
+                  </select>
+                </div>
+                <div class="view" style="margin-right: 20px;">
+                    <select class="customSelect" style="color:#000;" id="criticalFilter" name="criticalFilter" #criticalFilter (change)="applyFilter('criticality', criticalFilter.value)">
+                        <option [value]="select">Please Select Criticality Filter</option>
+                        <option [value]="criticality.id" *ngFor="let criticality of criticalityList">{{criticality.value}}</option>
+                    </select>
+                </div>
+                <div class="view">
+                  <select class="customSelect" style="color:#000;" id="projectFilter" name="projectFilter" #projectFilter (change)="applyFilter('project', projectFilter.value)">
+                      <option [value]="select">Please Select Project Filter</option>
+                      <option [value]="project._id" *ngFor="let project of projectsList">{{project.projectName}}</option>
+                  </select>
+                </div>
+            </div>
         </div>
     </div>
     <div>

@@ -133,7 +133,7 @@ export class TaskProvider{
     }
 
     changeStatus(task : any) : Promise<any> {
-        
+
         let url = this.serviceUrl + "/changeStatus";
 
         return this.http
@@ -174,6 +174,22 @@ export class TaskProvider{
             .catch((err) => {
                 this.handleError(err);
             });
+    }
+
+    applyFilter(filterValue : string, filterType : string) : Promise<any> {
+        let url = this.serviceUrl + '/taskFilter';
+
+        let data = {'filterType' : filterType, 'filterValue' : filterValue}
+
+        return this.http
+          .post(url, JSON.stringify(data), {headers : this.headers,withCredentials: true})
+          .toPromise()
+          .then((res) => {
+            return res.json().data;
+          })
+          .catch((err) => {
+            this.handleError(err);
+          });
     }
 
 }
